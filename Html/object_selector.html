@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet"
+	href="annotorious/css/annotorious.css" />
+	<link type="text/css" rel="stylesheet"
+	href="style.css" />
+<script type="text/javascript" src="annotorious/annotorious.min.js"></script>
+<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+
+<script>
+	var curr_snapshot = 0;
+	var session;
+	var jimg = [];
+	var metasnapshot = {};
+
+	function getParam(sname) {
+		var params = location.search.substr(location.search.indexOf("?") + 1);
+		var sval = "";
+		params = params.split("&");
+		// split param and value into individual pieces
+		for ( var i = 0; i < params.length; i++) {
+			temp = params[i].split("=");
+			if ([ temp[0] ] == sname) {
+				sval = temp[1];
+			}
+		}
+		return sval;
+	}
+
+	function init() {
+
+		session = getParam("session");
+		var ff = getParam("view");
+		console.log("ff:" + ff);
+		if(ff != ""){
+			$("#changeview").show();
+		}
+		else{
+			$("#changeview").hide();
+		}
+		findsnapshot(curr_snapshot);
+		document.getElementById("previous").style.visibility = "hidden";
+	}
+
+	function findsnapshot(number) {
+
+		$.getJSON("/pelars/multimedia/" + session + "/image", function(images) {
+
+			jimg = images;
+			var skipped = 0;
+			var index = 0;
+			var found = false;
+			while (found == false) {
+				if (images[index]['view'] == "workspace") {
+
+					skipped++;
+
+					if (skipped > number) {
+						found = true;
+						metasnapshot = images[index];
+						console.log("id of image: " + metasnapshot['id']);
+						$("#randImage").attr("src", metasnapshot['data']);
+						setTimeout(function() {
+							window.scrollTo(0, 10);
+							window.scrollTo(0, 0);
+						}, 50);
+					}
+				}
+				index++;
+			}
+		});
+	}
+
+	function nextsnapshot(num) {
+
+		curr_snapshot = curr_snapshot + num;
+		findsnapshot(curr_snapshot);
+
+		if (curr_snapshot > 0) {
+			document.getElementById("previous").style.visibility = "visible";
+		} else {
+			document.getElementById("previous").style.visibility = "hidden";
+		}
+
+		if (curr_snapshot >= jimg.length - 1) {
+			document.getElementById("next").style.visibility = "hidden";
+		} else {
+			document.getElementById("next").style.visibility = "visible";
+		}
+
+	}
+
+	function displayAnnotations(form) {
+		var annots = anno.getAnnotations();
+
+		for ( var i = 0; i < annots.length; i++) {
+			annots[i]['units'] = 'pixel';
+			annots[i]['shapes'][0]['geometry']['x'] = annots[i]['shapes'][0]['geometry']['x']
+					* document.getElementById("randImage").width;
+			annots[i]['shapes'][0]['geometry']['width'] = annots[i]['shapes'][0]['geometry']['width']
+					* document.getElementById("randImage").width;
+			annots[i]['shapes'][0]['geometry']['y'] = annots[i]['shapes'][0]['geometry']['y']
+					* document.getElementById("randImage").height;
+			annots[i]['shapes'][0]['geometry']['height'] = annots[i]['shapes'][0]['geometry']['height']
+					* document.getElementById("randImage").height;
+		}
+
+		var jsoninput = {};
+		jsoninput['type'] = "object_detect";
+		jsoninput['session'] = session;
+		jsoninput['start'] = curr_snapshot;
+		console.log(form.filterlength.value);
+		jsoninput['filter_lenght'] = form.filterlength.value;
+		var inputarray = [];
+
+		for ( var i = 0; i < annots.length; i++) {
+			var nobj = {};
+			nobj['x'] = annots[i]['shapes'][0]['geometry']['x'];
+			nobj['y'] = annots[i]['shapes'][0]['geometry']['y'];
+			nobj['width'] = annots[i]['shapes'][0]['geometry']['width'];
+			nobj['height'] = annots[i]['shapes'][0]['geometry']['height'];
+			nobj['name'] = annots[i]['text'];
+			inputarray.push(nobj);
+		}
+
+		jsoninput['boxes'] = inputarray;
+
+		//alert(JSON.stringify(jsoninput));
+		console.log(JSON.stringify(jsoninput));
+
+		//TODO: send jsoninput to /op via PUT 
+		jQuery.ajax({
+			type : "PUT",
+			url : "/pelars/op",
+			data : JSON.stringify(jsoninput),
+			dataType : "json",
+
+			success : function(jqXHR, status) {
+
+				var id = jqXHR.id
+				//$("#button").append("operation id: " + id);
+				$("#button").append(
+						'<button type="button" onclick="getOperationResult('
+								+ id + ')"> Get result</button>');
+
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(xhr.responseText);
+				alert(thrownErrconsole.log("id of image: " + metasnapshot['id']));
+			}
+		});
+	return false;
+	}
+	
+	function displayjson(id){
+		//ask the result
+		jQuery.ajax({
+			type : "GET",
+			url : "/pelars/op/" + id + "/result",
+			dataType : "json",
+			success : function(jqXHR, status) {
+
+				//append result to result div
+				var arrayjs;
+				console.log(jqXHR)
+				if (jqXHR['result'] == null) {
+					appending = JSON.stringify(jqXHR['message'], null, 2);
+					$("#result").text(appending);
+				} else {
+					arrayjs = jqXHR['result']['boxes'];
+					console.log(arrayjs);
+					//$("#result").text(appending);
+					$("#json").text("");
+					$("#json").append('<a>' + JSON.stringify(arrayjs, null,2) +'</a>');
+				}
+
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(xhr.responseText);
+				alert(thrownError);
+			}
+		});
+	}
+	
+	function changeview(form){
+	
+		var sub_data = {};
+		var n_val = form.view.value;
+		if (form.view.value != "") {
+			if(n_val == "workspace" || n_val == "screen" || n_val == "people" || n_val == "mobile"){
+			sub_data['view'] = form.view.value;
+			}
+			else{
+				alert("not valid view");
+				return false;
+			}
+		}
+		
+		jQuery.ajax({
+			timeout : 10000,
+			type : "POST",
+			url : "/pelars/multimedia/"+session + "/" + metasnapshot['id'],
+			//ALWAYS befor sending JSON data! 
+			data : JSON.stringify(sub_data),
+			dataType : "json",
+			contentType : "application/json; charset=utf-8",
+			success : function(jqXHR, status) {
+				alert("view changed");
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(xhr.responseText);
+				alert(thrownError);
+			}
+		});
+		return false;
+	}
+
+	function getOperationResult(id) {
+		//ask the result
+		jQuery.ajax({
+			type : "GET",
+			url : "/pelars/op/" + id + "/result",
+			dataType : "json",
+			success : function(jqXHR, status) {
+
+				//append result to result div
+				var appending;
+				console.log(jqXHR)
+				if (jqXHR['result'] == null) {
+					appending = JSON.stringify(jqXHR['message'], null, 2);
+					$("#result").text(appending);
+				} else {
+					appending = jqXHR['result']['url'];
+					console.log(appending);
+					//$("#result").text(appending);
+					$("#result").text("");
+					$("#result").append(
+							'<a href="'+appending+'">Generated video</a>');
+				//	$("#result").append('<button onclick="displayjson('+id+')" type="button">show json result</button>');
+				}
+
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(xhr.responseText);
+				alert(thrownError);
+			}
+		});
+	}
+</script>
+<style>
+#buttons {
+	margin: auto;
+	width: 60%;
+	border: 3px solid #73AD21;
+	padding: 10px;
+}
+
+.submitter {
+	margin: auto;
+	width: 60%;
+	border: 3px solid #73AD21;
+	padding: 10px;
+}
+
+.center {
+	position: relative;
+	left: 50%;
+}
+
+#submit{
+	position: relative;
+	left: 45%;
+}
+
+.left {
+	position: relative;
+	left: 15%;
+}
+
+.right {
+	position: relative;
+	left: 85%;
+}
+body { 
+	background: #ffffff;
+	color: #777777;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding: 0px;
+	}
+
+</style>
+</head>
+<body onload="init();">
+	<div id="imgdiv">
+		<img src="" id="randImage" class="annotatable" />
+	</div>
+	<div class="submitter">
+		<form onsubmit="return displayAnnotations(this);">
+			Filter length: <input type="text" name="filterlength">
+			<input id="submit" type="submit" value="Submit">
+		</form>
+		</div>
+		<form id="changeview" onsubmit="return changeview(this);">
+		View: <input type="text" name="view">
+		<input id="submit" type="submit" value="Submit">
+		</form>
+		<div class="submitter">
+		<button id="next" class="right" type="button"
+			onclick="nextsnapshot(1)">next</button>
+		<button id="previous" class="left" type="button"
+			onclick="nextsnapshot(-1)">previous</button>
+	</div>
+	<div id="button"></div>
+	<div id="result">
+	<div id="json"></div>
+	</div>
+</body>
+</html>

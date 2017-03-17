@@ -1,0 +1,52 @@
+- 23/06/2016: added operation to estimate programming time in a phase or the whole session. I take all the Ide samples in that interval if the difference in time between two consecutive samples is less than a threshold, the interval between those two is considered programming time. Theshold is computed as the median point between the minimum and the maximum of those diffferences. To be clear if is correct choice.
+
+-24/06/2016: fixed awful bug on Map operation when parallelism degree grater than 1. Output of frequency operation modified:
+{frequency, number of items, unit}. Added "from" and "to" parameters to Operation they are the interval of time from which operation extracts data. Frequency of programming can now be calculated by entering the following input:
+{
+    "type" : "map",
+    "session" : "1320",
+    "operation" : {
+            "type"  : "frequency",
+            "table" : "Ide"
+            },
+    "window_size" : 100000,
+    "overlap" : 0,
+    "parallelism" = 8
+}
+As a reminder: window_size is in milliseconds, overlap is a percentage of overlapping window, parallelism the number of thread dedicated to computation. 
+
+-29/06/2016: 
+- Added folder for mysql scripts. For now one script to remove spurious hands (marker ids identified through running aruco detector on snapshots and complete session videos)
+and one script to remove the "obs_" prefix in the phase names. First one executed, second one not. 
+- Modified timeline.html and piechart.html so that "obs_" prefix is neglected when session names are shown
+-Added endpoint "/pelars/completevideo/{session_id}/{'webcam|kinect'}" with only GET to retrieve the complete session videos
+
+-30/06/2016
+- Uploaded masks for each good session in order for the object_detector to work with all of them. Path to masks: /home/poweredge/uploads/{session_id}/image/mask.png
+
+-01/07/2016
+- Properly set view field of images of session 1042. Noticed that in session 1043 there are no images of the screen or of the people. Upload did not work? Camera was not working?
+
+-04/07/2016
+- Added the possibility of performing synchronous operations by adding the "sync" field in JSON input. For instance
+{
+    "type" : "media_info",
+    "session" : 1320,
+    "phase" : "obs_document",
+    "sync" : true
+}
+As soon as the result is ready or the operation fails the message is returned. (Note: TODO remember to set the status different from 200 if failure). Implementation is by polling. Thread running the servlet sleeps for 1 second and checks the status of the operation until the status is FAILED or TERMINATED. 
+
+-12/07/2016
+- Implemented merge operation as descibed in the API. Creates a new session without deleting or modifying any data: all is copied. Applied to some PELARS session for testing. successfull.
+
+-13/07/2016
+- All hand IDs fixed up. Reminder: 
+select COUNT(DISTINCT(Hands.num)) AS Hands, Sessions.ID, Sessions.is_valid FROM Hands INNER JOIN Sessions on Sessions.ID = Hands.Session WHERE Sessions.is_valid=(SELECT is_valid from Sessions WHERE ID=1051) GROUP BY Sessions.ID;
+
+-15/07/2016
+- for timeline: added parameters "data" and "multimedia". If they are set to false, multimedia or data are not displayed. By default they are set to true.
+
+-18/07/2016
+- changed /content/{session_id | name}/{name} endpoint. By default returns a JSONArray of objects. "result" field is the one containing the result of the operation, "id" is the id of the operation and "name" is the name (optional)
+- executeCommand(String) throws an exception if the command writes something on standard error

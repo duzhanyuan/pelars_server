@@ -1,0 +1,81 @@
+
+<html>
+<head>
+<script type="text/javascript" src="jquery/dist/jquery.js"></script>
+<script>
+	$.getJSON("/pelars/goodsession/", function(goodsessions) {
+		perform(goodsessions);
+	});
+
+	//check that the user is an administrator... better if done for group operation 
+
+	function perform(sessions) {
+
+		for (j = 0; j < sessions.length; j++) {
+
+			var jsoninput = {};
+			jsoninput['type'] = "group";
+			jsoninput['session'] = sessions[j]['session'];
+			jsoninput['name'] = "after session routine";
+
+			//TODO: send jsoninput to /op via PUT 
+			if (jsoninput['session'] > 1050) {
+				jQuery.ajax({
+					type : "PUT",
+					url : "/pelars/op",
+					data : JSON.stringify(jsoninput),
+					dataType : "json",
+					async : false,
+
+					success : function(jqXHR, status) {
+
+						console.log("OK");
+
+					},
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(xhr.responseText);
+						alert(thrownError);
+					}
+				});
+			}
+		}
+		return false;
+	}
+
+	/*function perform(sessions){
+
+	 for(j=0; j<sessions.length; j++){
+
+	 var jsoninput = {};
+	 jsoninput['type'] = "video_snapshot";
+	 jsoninput['session'] = sessions[j]['session'];
+	 jsoninput['view'] = "workspace";
+
+	 //TODO: send jsoninput to /op via PUT 
+	 if(jsoninput['session'] > 1050)
+	 jQuery.ajax({
+	 type : "PUT",
+	 url : "/pelars/op",
+	 data : JSON.stringify(jsoninput),
+	 dataType : "json",
+	 async : false,
+
+	 success : function(jqXHR, status) {
+	
+	 console.log("OK");
+
+	 },
+	 error : function(xhr, ajaxOptions, thrownError) {
+	 alert(xhr.status);
+	 alert(xhr.responseText);
+	 alert(thrownError);
+	 }
+	 });
+
+	 }
+	 return false;
+	 }*/
+</script>
+</head>
+</html>

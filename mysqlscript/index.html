@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7"  lang="en-US" itemscope itemtype="http://schema.org/Blog" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8"  lang="en-US" itemscope itemtype="http://schema.org/Blog" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US" itemscope itemtype="http://schema.org/Blog" prefix="og: http://ogp.me/ns#">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to parse JSON by command Line in Linux | TO THE NEW Blog</title>
+<link rel="profile" href="http://gmpg.org/xfn/11"/>
+<link rel="pingback" href="http://www.tothenew.com/blog/xmlrpc.php"/>
+<!--[if lt IE 9]>
+<script src="http://www.tothenew.com/blog/wp-content/themes/ttn/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://www.tothenew.com/blog/wp-content/themes/ttn/css/A.bootstrap.min.css.pagespeed.cf.S7QvpYf2w-.css">
+<link rel="stylesheet" type="text/css" href="http://www.tothenew.com/blog/wp-content/themes/ttn/css/A.style.css+stylesheet.css,Mcc.UPnRK3AQtT.css.pagespeed.cf.oNWyROILJQ.css">
+<link rel="author" href="https://plus.google.com/+TOTHENEW"/>
+<meta name="description" itemprop="description" content="I was working on my Java development project where it required me to parse JSON from the command line. I tried all the available options one-by-one to find a"/>
+<link rel="canonical" href="http://www.tothenew.com/blog/how-to-parse-json-by-command-line-in-linux/"/>
+<meta property="og:title" content="How to parse JSON by command Line in Linux | TO THE NEW Blog"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:url" content="http://www.tothenew.com/blog/how-to-parse-json-by-command-line-in-linux/"/>
+<meta property="og:image" content="http://www.tothenew.com/blog/wp-content/themes/ttnd/images/xlogo.jpg.pagespeed.ic.GNaRwDY_4c.webp"/>
+<meta property="og:site_name" content="TO THE NEW BLOG"/>
+<meta property="og:description" content="I was working on my Java development project where it required me to parse JSON from the command line. I tried all the available options one-by-one to find a solution which is most effective and a solution which can be implemented in easiest manner. Requirements To parse json from the command line you&#039;ll need a software called jq which is a command line JSON processor. Installation Step1: Download jq Binary For 64-bit linux OS:  wget http://stedolan.github.io/jq/download/linux64/jq For 32-bit linux OS : wget http://stedolan.github.io/jq/download/linux32/jq Step 2: chmod +x ./jq  Step 3: sudo cp jq /usr/bin In this blog, we will explain things with the help of an example JSON called Demo.json or demo.txt  Some of the frequently used use-cases have been discussed below with Command and their respective output. 1 : To parse a JSON object: Command :  Output :  2: To parse a nested JSON object: Command :  Output :  3: To extract specific fields from a JSON object: Command :  Output :  4: To"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="@tothenew"/>
+<meta name="twitter:domain" content="www.tothenew.com"/>
+<meta name="twitter:description" content="I was working on my Java development project where it required me to parse JSON from the command line. I tried all the available options one-by-one to find a solution which is most effective and a solution which can be implemented in easiest manner. Requirements To parse json from the command line you&#039;ll need a software called jq which is a command line JSON processor. Installation Step1: Download jq Binary For 64-bit linux OS:  wget http://stedolan.github.io/jq/download/linux64/jq For 32-bit linux OS : wget http://stedolan.github.io/jq/download/linux32/jq Step 2: chmod +x ./jq  Step 3: sudo cp jq /usr/bin In this blog, we will explain things with the help of an example JSON called Demo.json or demo.txt  Some of the frequently used use-cases have been discussed below with Command and their respective output. 1 : To parse a JSON object: Command :  Output :  2: To parse a nested JSON object: Command :  Output :  3: To extract specific fields from a JSON object: Command :  Output :  4: To"/>
+<meta itemprop="image" content="http://www.tothenew.com/blog/wp-content/themes/ttnd/images/xlogo.jpg.pagespeed.ic.GNaRwDY_4c.webp"/>
+<link rel="alternate" type="application/rss+xml" title="TO THE NEW Blog &raquo; Feed" href="http://www.tothenew.com/blog/feed/"/>
+<link rel="alternate" type="application/rss+xml" title="TO THE NEW Blog &raquo; Comments Feed" href="http://www.tothenew.com/blog/comments/feed/"/>
+<link rel="alternate" type="application/rss+xml" title="TO THE NEW Blog &raquo; How to parse JSON by command Line in Linux Comments Feed" href="http://www.tothenew.com/blog/how-to-parse-json-by-command-line-in-linux/feed/"/>
+<style id='yarppWidgetCss-css' media='all'>.yarpp_pro_msg{border:1px ridge #d0d0d0;padding:.4em 2em .8em;text-align:justify}.yarpp_pro_msg strong{display:inline-block;text-align:center;width:100%;color:#ffa500}.yarpp_help{position:relative;display:inline-block;background:transparent url(/blog/wp-includes/images/wpicons.png) no-repeat -520px -20px;vertical-align:text-bottom;width:20px;height:20px}.yarpp_help_msg{position:absolute;left:25px;display:none;border:1px solid #d0d0d0;width:250px;text-align:justify;padding:10px 15px;background-color:#fff;box-shadow:0 0 .4em -.15em #333;z-index:100}.yarpp_help:hover .yarpp_help_msg{display:block}</style>
+<link rel='stylesheet' id='ttn_new-fonts-css' href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&#038;subset=latin,latin-ext' type='text/css' media='all'/>
+<link rel='stylesheet' id='ttn_new-style-css' href='http://www.tothenew.com/blog/wp-content/themes/ttn/A.style.css,qver=4.0.2.pagespeed.cf.4W6mSeg2rf.css' type='text/css' media='all'/>
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='ttn_new-ie-css'  href='http://www.tothenew.com/blog/wp-content/themes/ttn/css/ie.css?ver=20121010' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript' src='http://www.tothenew.com/blog/wp-includes/js/jquery/jquery.js,qver=1.11.1.pagespeed.jm.z9hb-Gxqf6.js'></script>
+<script src="http://www.tothenew.com/blog/wp-includes,_js,_jquery,_jquery-migrate.min.js,qver==1.2.1+wp-content,_themes,_ttn,_js,_jquery.selectbox-0.2.js+wp-content,_themes,_ttn,_js,_bootstrap.min.js+wp-content,_themes,_ttn,_js,_talk-to-expert.js+wp-content,_themes,_ttn,_js,_service.js.pagespeed.jc.FB1Yx-W1yh.js"></script><script>eval(mod_pagespeed_$HCFhlo$4H);</script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.tothenew.com/blog/xmlrpc.php?rsd"/>
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.tothenew.com/blog/wp-includes/wlwmanifest.xml"/>
+<link rel='prev' title='LDAP integration with AEM (Apache Directory Server)' href='http://www.tothenew.com/blog/ldap-integration-with-aem-apache-directory-server/'/>
+<link rel='next' title='Day One at Groovy &amp; Grails eXchange 2013' href='http://www.tothenew.com/blog/day-one-at-groovy-grails-exchange-2013/'/>
+<meta name="generator" content="WordPress 4.0.2"/>
+<link rel='shortlink' href='http://www.tothenew.com/blog/?p=11130'/>
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+<link rel="stylesheet" type="text/css" href="http://www.tothenew.com/blog/wp-content/themes/ttn/css/A.ie.css+jquery.mCustomScrollbar.css,Mcc.tLkaEKmlOC.css.pagespeed.cf.4jtGyNA9gr.css">
+<link href="http://www.tothenew.com/blog/wp-content/themes/ttn/images/favicon.ico" rel="icon" type="image/x-icon"/>
+<script>eval(mod_pagespeed_C63bvpXjX4);</script>
+<script>eval(mod_pagespeed_uq2A4yfAsy);</script>
+<script>eval(mod_pagespeed_01ZAeCsVDY);</script>
+<script>eval(mod_pagespeed_ESuZhAPo9z);</script>
+<script src="http://www.tothenew.com/blog/wp-content/themes/ttn/js/jquery.validate.js+application.js.pagespeed.jc.RO3l1cB5En.js"></script><script>eval(mod_pagespeed_31LbSXf9Sy);</script>
+<script>eval(mod_pagespeed_irt7OkTSwv);</script>
+<script src="http://www.tothenew.com/blog/wp-content/themes/ttn/js/jquery.mCustomScrollbar.concat.min.js+masonry.pkgd.min.js.pagespeed.jc.XlEiBd5XbY.js"></script><script>eval(mod_pagespeed_SXx_aioXmk);</script>
+<script>eval(mod_pagespeed_EM6F0OvFNj);</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body class="single single-post postid-11130 single-format-standard custom-font-enabled">
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M2TS6P" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M2TS6P');</script>
+<div id="container">
+<header id="header">
+<div class="container">
+<div class="clearfix region-header">
+<div class="logo">
+<a rel="nofollow" href="/" class="site-logo"></a>
+</div>
+<div class="custom-search">
+<form accept-charset="UTF-8" id="views-exposed-form-search-result-page-1" method="get" action="/results">
+<div class="form--inline clearfix">
+<label for="edit-combine"> </label>
+<input type="text" class="form-text" maxlength="128" size="30" value="" name="combine" id="edit-combine"/>
+<input type="submit" class="button js-form-submit form-submit" value="Apply" id="edit-submit-search-result"/>
+</div>
+</form>
+</div>
+<nav class="clearfix">
+<div id="menu">
+<ul class="clearfix menu">
+<li><a href="/services">Services</a></li>
+<li><a href="/technologies">Technologies</a></li>
+<li><a href="/products">Products</a></li>
+<li><a rel="nofollow" href="/success-stories">Success Stories</a></li>
+<li><a rel="nofollow" href="/insights">Insights</a></li>
+<li><a rel="nofollow" href="/jobs">Career</a></li>
+<li><a rel="nofollow" href="/contact-us">contact us</a></li>
+</ul>
+</div>
+<div class="menu-btn">
+<div class="burger-container">
+<div id="burger">
+<div class="bar topBar"></div>
+<div class="bar btmBar"></div>
+</div>
+</div>
+</div>
+<a class="search-icon" href="#">search</a>
+</nav>
+</div>
+</div>
+</header>
+<div id="banner" class="clearfix">
+<div class="overlay">
+<script pagespeed_no_defer="">window['pagespeed'] = window['pagespeed'] || {};var pagespeed = window['pagespeed'];pagespeed.switchToHighResAndMaybeBeacon = function(elem) {setTimeout(function(){elem.onload = null;elem.src = elem.getAttribute('pagespeed_high_res_src');if (pagespeed.CriticalImages) {elem.onload = pagespeed.CriticalImages.checkImageForCriticality(elem);}}, 0);};</script><img pagespeed_high_res_src="http://www.tothenew.com/blog/wp-content/themes/ttn/images/banner/xblog-banner.jpg.pagespeed.ic.6Yq15ImWTn.jpg" alt="Blog" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAFA3PEY8MlBGQUZaVVBfeMiCeG5uePWvuZHI////////////////////////////////////////////////////2wBDAVVaWnhpeOuCguv/////////////////////////////////////////////////////////////////////////wAARCAFiBQADASIAAhEBAxEB/8QAGQABAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAJBABAQEBAAMBAAIDAQEBAQAAAAERAgMSITFBURNhgTIicZH/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oADAMBAAIRAxEAPwCEqaiKvV2M8361+pIDWs2rjNBZ23O3JYDr7w9o54vqCXKesrc5a9Qcv8cZvidsMB574mf8Veyca3OJFHk48Fv69HHjnLdsjN6EatkZvTOoKupVQGM1cw67kcevKDr13I49eTWL1ayIttqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsuVAHr8PWx2eTxdZXq5uwFajKwE7jk737HHqZRUTapiCbTRAXV2MmA18SyMn0CwPpqhq6gC/piG0FSrpsQZGjAZFxFAEABcBBrD4DI1iYgiooAAJgpAZXVsTAFlJCwGtSxlZQRda/WbANVk0FxF0A1dZIDSKaBq6hgLoymg0uszpZYDQfEBV1k0GvhkqSrKBeJWb4pW9XQcv8MZvhd/Y0HlvjsZ9K9VmnrAjyetMeq8Rm+OKR5h6P8TN8QOWmt/4ql8dEJ3Y3PNXP1qZQejnztf53lBa9F8krN7cdNCus6dOa82tTvAeqWLbHmnkX/Ig7aOU7X3BvU1j20BpcZNBZV1kwGtVlQa1jqlqALiRoEWdIfoNzpqdazzxrrzxgEmtzmRNkZvSjdsjF6ZtQF1AAEvUjl35QdOu5HLvyufXdrAjV6tZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGublevxdbHid/D19B6lZlUGo5+SNxepsFefaa11mp8QT2Ni5D1BPh8MMBMMMp9ARfpqiCp8QPqKKAABoAaIgLUAFiooILiYgaaSL6gmLjXM+nX4DMi+pz9rV+QHOzEi/tX1BZU6EoCxlqAlQtAWV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" onload="pagespeed.switchToHighResAndMaybeBeacon(this);">
+</div>
+<div class="banner-text">
+<h2>Blogs</h2>
+<p>Told you, we love sharing!</p>
+</div>
+<div class="col-xs-12 breadcrumbs padding0">
+<ul>
+<li><a rel="nofollow" href="/">Home</a></li><li><a rel="v:url" property="v:title" title="Go to TO THE NEW Blog." href="http://www.tothenew.com/blog/" class="home">Blog</a></li><li><a rel="nofollow" property="v:title" title="Go to the Technology category archives." href="http://www.tothenew.com/blog/category/technology/" class="taxonomy category">Technology</a></li><li><span property="v:title">How to parse JSON by command Line in Linux</span></li> </ul>
+</div>
+</div>
+<div class="clearfix category-list white">
+<div class="container">
+<div class="row">
+<div class="normal">
+<div class="col-xs-6 col-sm-6 col-md-6">
+<div class="col-xs-12 col-md-6 main-cat">
+<div class="heading">Category</div>
+<div class="cat-dropdown">
+<div class="cat-drop-inner mCustomScrollbar inset-dark">
+<div class="cat-drop cat-1"><div class="heading">Technology</div><ul class="drop-1">	<li class="cat-item cat-item-518"><a href="http://www.tothenew.com/blog/category/technology/android/" title="This category contains posts related to Android." rel="nofollow">Android</a>
+</li>
+<li class="cat-item cat-item-1439"><a href="http://www.tothenew.com/blog/category/technology/angular/" rel="nofollow">Angular</a>
+</li>
+<li class="cat-item cat-item-2026"><a href="http://www.tothenew.com/blog/category/technology/appsec/" title="Application/Information Security category." rel="nofollow">Application Security</a>
+</li>
+<li class="cat-item cat-item-1818"><a href="http://www.tothenew.com/blog/category/technology/automation-testing-testing-2/" rel="nofollow">Automation Testing</a>
+</li>
+<li class="cat-item cat-item-1174"><a href="http://www.tothenew.com/blog/category/technology/aws-2/" title="Amazon web services" rel="nofollow">AWS</a>
+</li>
+<li class="cat-item cat-item-1395"><a href="http://www.tothenew.com/blog/category/technology/big-data/" title="For big data blogs of TO THE NEW" rel="nofollow">Big Data</a>
+</li>
+<li class="cat-item cat-item-1448"><a href="http://www.tothenew.com/blog/category/technology/cq5-2/" title="This category contains posts related to CQ5/AEM." rel="nofollow">CQ5/AEM</a>
+</li>
+<li class="cat-item cat-item-259"><a href="http://www.tothenew.com/blog/category/technology/database/" title="This category contains posts related to Database." rel="nofollow">Database</a>
+</li>
+<li class="cat-item cat-item-2348"><a href="http://www.tothenew.com/blog/category/technology/devops-technology/" rel="nofollow">DevOps</a>
+</li>
+<li class="cat-item cat-item-1878"><a href="http://www.tothenew.com/blog/category/technology/git-2/" rel="nofollow">Git</a>
+</li>
+<li class="cat-item cat-item-1613"><a href="http://www.tothenew.com/blog/category/technology/gradle-2/" title="Groovy based build tool" rel="nofollow">Gradle</a>
+</li>
+<li class="cat-item cat-item-7"><a href="http://www.tothenew.com/blog/category/technology/grails/" title="This category contains posts related to Grails." rel="nofollow">Grails</a>
+</li>
+<li class="cat-item cat-item-52"><a href="http://www.tothenew.com/blog/category/technology/html/" title="It contains blogs related to HTML, css and other UI issues" rel="nofollow">HTML/UI/CSS</a>
+</li>
+<li class="cat-item cat-item-1400"><a href="http://www.tothenew.com/blog/category/technology/ios/" title="iOS Mobile Application Development" rel="nofollow">iOS</a>
+</li>
+<li class="cat-item cat-item-446"><a href="http://www.tothenew.com/blog/category/technology/java/" rel="nofollow">Java</a>
+</li>
+<li class="cat-item cat-item-261"><a href="http://www.tothenew.com/blog/category/technology/javascript-ajax-jquery/" title="This category contains posts related to Javascript/Ajax/JQuery." rel="nofollow">Javascript/Ajax/JQuery</a>
+</li>
+<li class="cat-item cat-item-1817"><a href="http://www.tothenew.com/blog/category/technology/manual-testing/" rel="nofollow">Manual Testing</a>
+</li>
+<li class="cat-item cat-item-1772"><a href="http://www.tothenew.com/blog/category/technology/mobility/" rel="nofollow">Mobility</a>
+</li>
+<li class="cat-item cat-item-849"><a href="http://www.tothenew.com/blog/category/technology/mongodb/" rel="nofollow">MongoDB</a>
+</li>
+<li class="cat-item cat-item-1185"><a href="http://www.tothenew.com/blog/category/technology/node-js-2/" title="This category contains posts related to Node.js." rel="nofollow">Node.js</a>
+</li>
+<li class="cat-item cat-item-3477"><a href="http://www.tothenew.com/blog/category/technology/smart-tv/" rel="nofollow">Smart TV</a>
+</li>
+<li class="cat-item cat-item-1753"><a href="http://www.tothenew.com/blog/category/technology/spring-events-java/" rel="nofollow">Spring Events</a>
+</li>
+<li class="cat-item cat-item-1816"><a href="http://www.tothenew.com/blog/category/technology/testing-2/" rel="nofollow">Testing</a>
+</li>
+</ul></div><div class="cat-drop cat-1953"><div class="heading">Marketing</div><ul class="drop-1953">	<li class="cat-item cat-item-1541"><a href="http://www.tothenew.com/blog/category/marketing/corporate/" title="This category contains posts related to Corporate." rel="nofollow">Corporate</a>
+</li>
+<li class="cat-item cat-item-2251"><a href="http://www.tothenew.com/blog/category/marketing/digital-analytics/" rel="nofollow">Digital Analytics</a>
+</li>
+<li class="cat-item cat-item-1880"><a href="http://www.tothenew.com/blog/category/marketing/digital-campaign-analytics/" rel="nofollow">Digital Campaign Analytics</a>
+</li>
+<li class="cat-item cat-item-1964"><a href="http://www.tothenew.com/blog/category/marketing/digital-marketing/" rel="nofollow">Digital Marketing</a>
+</li>
+<li class="cat-item cat-item-2252"><a href="http://www.tothenew.com/blog/category/marketing/digital-marketing-strategy/" rel="nofollow">Digital Marketing Strategy</a>
+</li>
+<li class="cat-item cat-item-1861"><a href="http://www.tothenew.com/blog/category/marketing/digital-music/" rel="nofollow">Digital Music</a>
+</li>
+<li class="cat-item cat-item-1862"><a href="http://www.tothenew.com/blog/category/marketing/digital-video/" rel="nofollow">Digital Video</a>
+</li>
+<li class="cat-item cat-item-1814"><a href="http://www.tothenew.com/blog/category/marketing/industry-buzz/" title="The category includes ndustry analysis, industry news, technology news and corporate writeups" rel="nofollow">Industry Buzz</a>
+</li>
+<li class="cat-item cat-item-1882"><a href="http://www.tothenew.com/blog/category/marketing/social-lead-generation/" rel="nofollow">Social Lead Generation</a>
+</li>
+<li class="cat-item cat-item-2253"><a href="http://www.tothenew.com/blog/category/marketing/social-media-analytics/" rel="nofollow">Social Media Analytics</a>
+</li>
+<li class="cat-item cat-item-1917"><a href="http://www.tothenew.com/blog/category/marketing/social-media-marketing/" title="Insights, trends and opinions about social media marketing " rel="nofollow">Social Media Marketing</a>
+</li>
+<li class="cat-item cat-item-1881"><a href="http://www.tothenew.com/blog/category/marketing/social-media-risk/" rel="nofollow">Social Media Risk</a>
+</li>
+<li class="cat-item cat-item-2052"><a href="http://www.tothenew.com/blog/category/marketing/youtube-channel-optimization/" rel="nofollow">YouTube Optimization</a>
+</li>
+</ul></div>	</div>
+</div>
+</div>
+<div class="search-form">
+<form method="get" id="searchform" action="http://www.tothenew.com/blog/">
+<div>
+<input type="submit" id="searchsubmit" value="Search" class="btn"/>
+<input type="text" name="s" id="s" value="Search blog" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"/>
+</div>
+</form>
+</div>	</div>
+<div class="col-xs-6 col-sm-6 col-md-6">
+<div class="col-md-12 subscrb">
+<div class="subscribe">
+<form id="subscribeForm">
+<ul class="sign-up-frm">
+<li class="width100">
+<input style="display:none" type="checkbox" value="Technology" id="tech" checked>
+<input style="display:none" type="checkbox" value="Marketing" id="mark" checked>
+<input type="text" id="email1" name="email1" value="Enter Email" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+<input class="submit subscribeButton" type="submit" value="Subscribe to Our Blog">
+</li>
+</ul>
+<div id="messageBox"></div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div id="blog-section" itemscope itemType="http://schema.org/BlogPosting">
+<div class="container">
+<div class="row">
+<div class="col-md-9 left-content">
+<div class="post-body">
+<div class="blogs">
+<meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="http://www.tothenew.com/blog/how-to-parse-json-by-command-line-in-linux/"/>
+<div class="date-header">
+<time datetime="2013-12-13T12:50:17+00:00" itemprop="datePublished"> </time>
+<time datetime="2013-12-13T12:50:17+00:00" itemprop="dateModified"> </time>
+</div>
+<header class="entry-header">
+<h1 itemprop="headline">How to parse JSON by command Line in Linux</h1>
+</header>
+<div class="tag">
+<ul>
+<li>
+<a rel="nofollow" href="http://www.tothenew.com/blog/category/technology/" title="View all posts in Technology">Technology</a>	</li>
+</ul>
+</div>
+<div class="date-author">13 / Dec / 2013 <em>by <a class="url fn n" href="http://www.tothenew.com/blog/author/arshad/" title="View all posts by arshad" rel="author nofollow">arshad</a></em>
+<a href="http://www.tothenew.com/blog/how-to-parse-json-by-command-line-in-linux/#comments" title="Comment on How to parse JSON by command Line in Linux"><span class="leave-reply">2 comments</span></a>	</div>
+<div class="share-this">
+<div class="share-heading">Share this blog</div>
+<span class='st_email_hcount' displayText='Email'></span>
+<span class='st_twitter_hcount' displayText='Tweet'></span>
+<span class='st_facebook_hcount' displayText='Facebook'></span>
+<span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+<span class='st_googleplus_hcount' displayText='Google +'></span>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher:"6dab6984-fc4c-4fa6-b9a4-da3a2ce911a1",doNotHash:false,doNotCopy:false,hashAddressBar:false});</script>
+</div>
+<div itemprop="description">
+<p><span style="color:#445263">I was working on my <a title="java development services" href="http://www.tothenew.com/java-development-services">Java development project</a> where it required me to </span><strong>parse JSON from the command line</strong><span style="color:#445263">. I tried all the available options one-by-one to find a solution which is most effective and a solution which can be implemented in easiest manner.</span></p>
+<p><span style="text-decoration:underline"><strong>Requirements</strong></span></p>
+<p>To parse json from the command line you&#8217;ll need a software called <a href="http://stedolan.github.io/jq/download/">jq</a> which is a command line JSON processor.</p>
+<p><span style="text-decoration:underline"><strong>Installation</strong></span></p>
+<p><strong>Step1: </strong>Download <em>jq</em> Binary</p>
+<p>For 64-bit linux OS:  wget http://stedolan.github.io/jq/download/linux64/jq</p>
+<p>For 32-bit linux OS : wget http://stedolan.github.io/jq/download/linux32/jq</p>
+<p><span style="color:#445263"><span style="font-family:Arial,Helvetica,sans-serif"><strong>Step 2:</strong> chmod +x ./jq </span></span></p>
+<p><span style="color:#445263"><span style="font-family:Arial,Helvetica,sans-serif"><strong>Step 3:</strong> sudo cp jq /usr/bin</span></span></p>
+<p>In this blog, we will explain things with the help of an example JSON called <em><span style="color:#445263"><span style="font-family:Arial,Helvetica,sans-serif">Demo.json </span></span><span style="color:#445263"><span style="font-family:Arial,Helvetica,sans-serif">or demo.txt</span></span></em></p>
+<pre class="brush: jscript; title: ; notranslate" title="">
+{
+  &quot;OwnerId&quot;: &quot;xyz&quot;,
+  &quot;ReservationId&quot;: &quot;abc&quot;,
+  &quot;Groups&quot;: [],
+  &quot;State&quot;: {
+      &quot;Code&quot;: 0,
+      &quot;Name&quot;: &quot;pending&quot;
+    },
+  &quot;Instances&quot;: [
+  {
+    &quot;Monitoring&quot;: {
+     &quot;State&quot;: &quot;disabled&quot;
+    },
+    &quot;SecurityGroups&quot;: [
+    {
+      &quot;GroupName&quot;: &quot;default&quot;,
+      &quot;GroupId&quot;: &quot;sg-xxxx&quot;
+    }
+    ],
+    &quot;NetworkInterfaces&quot;: [
+     {
+        &quot;PrivateIpAddresses&quot;: [
+        {
+           &quot;PrivateDnsName&quot;: &quot;ip-xx-xx-yy-yyy&quot;,
+           &quot;Primary&quot;: true,
+           &quot;PrivateIpAddress&quot;: &quot;xx.xx.yy.yyy&quot;
+        }
+        ],
+        &quot;PrivateDnsName&quot;: &quot;ip-xxx-xx-yy-yyy&quot;
+       }
+     ]
+   }
+ ]
+}
+</pre>
+<p>Some of the frequently used use-cases have been discussed below with Command and their respective output.</p>
+<p><strong>1 : To parse a JSON object:</strong></p>
+<p>Command :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">cat Demo.json | jq '.OwnerId'</pre>
+<p>Output :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">&quot;xyz&quot;</pre>
+<p><strong>2: To parse a nested JSON object:</strong></p>
+<p>Command :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">cat Demo.json | jq '.State.Name'</pre>
+<p>Output :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">&quot;pending&quot;</pre>
+<p><strong>3: To extract specific fields from a JSON object:</strong></p>
+<p>Command :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">cat Demo.json | jq '.State | { Code , Name}'</pre>
+<p>Output :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">{
+&quot;Name&quot;: &quot;pending&quot;,
+&quot;Code&quot;: 0
+}</pre>
+<p><strong>4: To parse a JSON array:</strong></p>
+<p>Command :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">cat Demo.json | jq '.Instances[0].Monitoring'</pre>
+<p>Output :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">{
+&quot;State&quot;: &quot;disabled&quot;
+}</pre>
+<p>Command :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">cat Demo.json | jq '.Instances[0].Monitoring.State'</pre>
+<p>Output :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">&quot;disabled&quot;</pre>
+<p>Command :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">cat Demo.json | jq '.Instances[0].NetworkInterfaces[0].PrivateIpAddresses[0].PrivateDnsName'</pre>
+<p>Output :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">&quot;ip-xxx-xx-yy-yyy&quot;</pre>
+<p><em>In cases where you only need the value; you have to remove the “” by using pipeline in linux</em></p>
+<p>Command :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">cat Demo.json | jq '.OwnerId' | cut -d &quot;\&quot;&quot; -f 2</pre>
+<p>Output :</p>
+<pre class="brush: jscript; title: ; notranslate" title="">xyz</pre>
+<p>I hope it will help you.     <span style="color:#445263"><span style="font-family:Arial,Helvetica,sans-serif"> </span></span></p>
+</div>
+<div class="tag-cloud">
+<h3>Tag -</h3>
+<a href="http://www.tothenew.com/blog/tag/command-line/" rel="tag nofollow">command line</a> <a href="http://www.tothenew.com/blog/tag/json/" rel="tag nofollow">JSON</a> <a href="http://www.tothenew.com/blog/tag/linux/" rel="tag nofollow">Linux</a> <a href="http://www.tothenew.com/blog/tag/parse-json/" rel="tag nofollow">parse json</a>
+</div>
+<div class="sharethis-text">
+<div class="pre-loader">FOUND THIS USEFUL? SHARE IT</div>
+</div>
+<div class="share-this footer-sharethis" style="text-align:center">
+<span class='st_email_hcount' displayText='Email'></span>
+<span class='st_twitter_hcount' displayText='Tweet'></span>
+<span class='st_facebook_hcount' displayText='Facebook'></span>
+<span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+<span class='st_googleplus_hcount' displayText='Google +'></span>
+</div>
+</div>	</div>
+<div class="resources1">
+<div class="overlay">
+<img src="http://www.tothenew.com/blog/wp-content/themes/ttn/images/xresources.jpg.pagespeed.ic.h-MfzRG4Au.jpg" alt=""/>
+</div>
+<div class="banner-text">
+<div class="resource-inner">
+<div class="thumb">
+<img width="300" height="232" src="http://www.tothenew.com/blog/wp-content/uploads/2016/03/300x232x1.-Software-Testing-in-Agile-Envirpnment.jpg.pagespeed.ic.G45HnCSWBi.jpg" class="attachment-post-thumbnail wp-post-image" alt="1.-Software-Testing-in-Agile-Envirpnment"/>	</div>
+<div class="col-xs-7 col-md-8">
+<span class="resourceName">
+Whitepaper	</span>
+<p>
+Software Testing in Agile Environment	</p>
+<a class="reso-more" href="http://insights.tothenew.com/testing-software-testing-agile-environment" onclick="window.open(this.href); return false;">Download Whitepaper</a>
+</div>
+</div>
+</div>
+</div>
+<div class="post-body">
+<section id="comment-reply">
+<div id="comments" class="comments-area">
+<h3 class="comment-reply-title">comments (2)</h3>
+<ol class="commentlist">
+<li class="comment even thread-even depth-1" id="li-comment-172437">
+<article id="comment-172437" class="comment">
+<header class="comment-meta comment-author vcard">
+<img alt='' src='http://0.gravatar.com/avatar/21530ca24e0b5ffb0c40d42cbb97c049?s=44&amp;d=http%3A%2F%2Fwww.tothenew.com%2Fblog%2Fwp-content%2Fthemes%2Fttn%2Fimages%2Fdefault-avatar.png%3Fs%3D44&amp;r=G' class='avatar avatar-44 photo' height='44' width='44'/><cite><b class="fn">aakash</b> </cite><a href="http://www.tothenew.com/blog/how-to-parse-json-by-command-line-in-linux/comment-page-1/#comment-172437"><time datetime="2016-11-09T15:16:50+00:00">November 9, 2016 at 3:16 pm</time></a>	</header>
+<section class="comment-content comment">
+<p>thank you very much. It&#8217;s help me lot !</p>
+</section>
+<div class="reply">
+<a class='comment-reply-link' href='/blog/how-to-parse-json-by-command-line-in-linux/?replytocom=172437#respond' onclick='return addComment.moveForm("comment-172437", "172437", "respond", "11130")'>Reply</a> <span>&darr;</span>	</div>
+</article>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-133478">
+<article id="comment-133478" class="comment">
+<header class="comment-meta comment-author vcard">
+<img alt='' src='http://0.gravatar.com/avatar/6b527f77995cc0603f82bd1ed2f001f7?s=44&amp;d=http%3A%2F%2Fwww.tothenew.com%2Fblog%2Fwp-content%2Fthemes%2Fttn%2Fimages%2Fdefault-avatar.png%3Fs%3D44&amp;r=G' class='avatar avatar-44 photo' height='44' width='44'/><cite><b class="fn"><a href='http://www.calabriatechnology.com/' rel='external nofollow' class='url'>www.calabriatechnology.com</a></b> </cite><a href="http://www.tothenew.com/blog/how-to-parse-json-by-command-line-in-linux/comment-page-1/#comment-133478"><time datetime="2015-03-26T01:57:20+00:00">March 26, 2015 at 1:57 am</time></a>	</header>
+<section class="comment-content comment">
+<p>Thanks a lot for the blog.Much thanks again. Really Great.</p>
+</section>
+<div class="reply">
+<a class='comment-reply-link' href='/blog/how-to-parse-json-by-command-line-in-linux/?replytocom=133478#respond' onclick='return addComment.moveForm("comment-133478", "133478", "respond", "11130")'>Reply</a> <span>&darr;</span>	</div>
+</article>
+</li>
+</ol>
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title">Leave a comment - <small><a rel="nofollow" id="cancel-comment-reply-link" href="/blog/how-to-parse-json-by-command-line-in-linux/#respond" style="display:none">Cancel reply</a></small></h3>
+<form action="http://www.tothenew.com/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required='true'/></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-required='true'/></p>
+<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>	<p class="form-submit">
+<input name="submit" type="submit" id="submit" value="Submit"/>
+<input type='hidden' name='comment_post_ID' value='11130' id='comment_post_ID'/>
+<input type='hidden' name='comment_parent' id='comment_parent' value='0'/>
+</p>
+<p style="display:none"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="df09f42609"/></p><p style="display:none"><input type="hidden" id="ak_js" name="ak_js" value="145"/></p>	</form>
+</div>
+</div>	</section>
+</div>
+</div>
+<div class="col-md-3 sidebar">
+<div class="sidebar-in">
+<div class="resources" itemprop="author">
+<div itemscope itemtype="http://schema.org/Person">
+<div class="thumb"><img alt='' src='http://0.gravatar.com/avatar/0661ea4218cdb271be78453b9334a354?s=90&amp;d=http%3A%2F%2Fwww.tothenew.com%2Fblog%2Fwp-content%2Fthemes%2Fttn%2Fimages%2Fdefault-avatar.png%3Fs%3D90&amp;r=G' class='avatar avatar-90 photo' height='90' width='90'/></a></div>
+<div class="name" itemprop="name">by<br/><a href="http://www.tothenew.com/blog/author/arshad/" rel="nofollow">arshad</a></div>
+<p></p>
+<meta itemprop="homeLocation" content="INDIA">
+</div>
+</div>
+<div class="suggested">
+<p>You May Also Like</p><div class='yarpp-related-widget mCustomScrollbar inset-dark'>
+<div class="col-xs-12 col-md-4 col-sm-6"><div class="blog-box"><div class="heading"><a href="http://www.tothenew.com/blog/log-rotation-using-linux-command-line-utility-logrotate/" rel="bookmark">LOG ROTATION USING LINUX COMMAND-LINE UTILITY LOGROTATE</a></div><span><small class="date">June 15, 2015</small><br> by <strong>Tarun Saxena</strong></span><p class="bottom"><a rel="nofollow" href="http://www.tothenew.com/blog/category/technology/" title="View all posts in Technology">Technology</a></p></div></div><div class="col-xs-12 col-md-4 col-sm-6"><div class="blog-box"><div class="heading"><a href="http://www.tothenew.com/blog/sending-email-through-command-line-with-mutt/" rel="bookmark">Sending email through command line with Mutt</a></div><span><small class="date">September 12, 2012</small><br> by <strong>Abhishek Tejpaul</strong></span><p class="bottom"><a rel="nofollow" href="http://www.tothenew.com/blog/category/technology/aws-2/" title="View all posts in AWS">AWS</a></p></div></div><div class="col-xs-12 col-md-4 col-sm-6"><div class="blog-box"><div class="heading"><a href="http://www.tothenew.com/blog/mysql-top-just-like-we-have-top-command-in-linux/" rel="bookmark">Mysql top just like we have top command in Linux</a></div><span><small class="date">October 8, 2011</small><br> by <strong>Anuj Aneja</strong></span><p class="bottom"><a rel="nofollow" href="http://www.tothenew.com/blog/category/technology/" title="View all posts in Technology">Technology</a></p></div></div>
+</div>
+</div>
+<div class="followUs">
+<div class="heading"><img src="http://www.tothenew.com/blog/wp-content/themes/ttn/images/xfollowous.jpg.pagespeed.ic.Z9_o9doedZ.jpg"/></div>
+<a href="https://www.facebook.com/tothenewdigital/" rel="nofollow" class="st_facebook_custom" onclick="window.open(this.href); return false;" st_processed="no"></a>
+<a href="https://twitter.com/TOTHENEW" rel="nofollow" class="st_twitter_custom" onclick="window.open(this.href); return false;" st_processed="no"></a>
+<a href="https://plus.google.com/+TOTHENEW" rel="nofollow" class="st_googleplus_custom" onclick="window.open(this.href); return false;" st_processed="no"></a>
+<a href="https://www.linkedin.com/company/tothenew" rel="nofollow" class="st_linkedin_custom" onclick="window.open(this.href); return false;" st_processed="no"></a>
+</div>
+</div>
+</div>
+<span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+<meta itemprop="url" content="http://1.gravatar.com/avatar/7b1612e6049d9fa3f2389defb2df55a3?s=90&d=http%3A%2F%2Fwww.tothenew.com%2Fblog%2Fwp-content%2Fthemes%2Fttn%2Fimages%2Fdefault-avatar.png%3Fs%3D90&r=G">
+<meta itemprop="width" content="90">
+<meta itemprop="height" content="90">
+</span>
+<span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+<span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+<meta itemprop="url" content="http://www.tothenew.com/blog/wp-content/themes/ttn/images/logo.jpg">
+</span>
+<meta itemprop="name" content="TO THE NEW">
+</span>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="http://www.tothenew.com/blog/wp-content/themes/ttn/js/jquery.ellipsis.js.pagespeed.jm.Md_Xbub57o.js"></script>
+<script type="text/javascript">jQuery('.leav-comments a').click(function(){jQuery(this).toggleClass('active');return false;});jQuery('.leave-reply').click(function(){jQuery('.leav-comments a').toggleClass('active');var attr=jQuery(this).attr('class');var divPosition=jQuery('#'+attr).offset();if(attr){jQuery('html, body').animate({scrollTop:divPosition.top-200},500);}
+return false;});jQuery(document).ready(function(){jQuery('.suggested .heading a').trunk8({lines:2});jQuery('#commentform .comment-form-author input').val('');jQuery('#commentform .comment-form-email input').val('');jQuery('#commentform .comment-form-comment input').val('');});jQuery(window).resize(function(){jQuery('.suggested .heading a').trunk8({lines:2});});</script>
+<script type="text/javascript">jQuery(document).ready(function(){jQuery('.sides a small').each(function(){var that=jQuery(this),title=that.text(),chars=title.length;if(chars>33){var newTitle=title.substring(0,33)+"...";that.text(newTitle);}});equalheight=function(container){var currentTallest=0,currentRowStart=0,rowDivs=new Array(),$el,topPosition=0;jQuery(container).each(function(){$el=jQuery(this);jQuery($el).height('auto')
+topPostion=$el.position().top;if(currentRowStart!=topPostion){for(currentDiv=0;currentDiv<rowDivs.length;currentDiv++){rowDivs[currentDiv].height(currentTallest);}
+rowDivs.length=0;currentRowStart=topPostion;currentTallest=$el.height();rowDivs.push($el);}else{rowDivs.push($el);currentTallest=(currentTallest<$el.height())?($el.height()):(currentTallest);}
+for(currentDiv=0;currentDiv<rowDivs.length;currentDiv++){rowDivs[currentDiv].height(currentTallest);}});}
+jQuery('.search-icon').on('click',function(e){e.preventDefault();jQuery('header').toggleClass('search-open');e.stopPropagation();})
+jQuery('.custom-search').on('click',function(e){e.stopPropagation();});jQuery(document).on('click',function(e){jQuery('header').removeClass('search-open');});jQuery('#s').focus(function(){jQuery(this).parent().parent().parent().addClass('active');});jQuery('#s').focusout(function(){jQuery(this).parent().parent().parent().removeClass('active');});jQuery(".left-content .border:eq(0), .left-content .border:eq(1), .left-content .border:eq(2), .left-content .border:eq(3), .left-content .border:eq(4), .left-content .border:eq(5), .left-content .border:eq(6), .left-content .border:eq(7),.left-content .border:eq(8)").show();jQuery('.comment-respond input, .comment-respond textarea').on('focus',function(){if(jQuery(this).val().length<1){jQuery(this).parents('p').addClass('focused');}});jQuery('.comment-respond input, .comment-respond textarea').on('blur',function(){if(jQuery(this).val().length<1){jQuery(this).parents('p').removeClass('focused');}})});</script>
+<div id="subscribe-blog">
+<div class="overlay">
+<img src="http://www.tothenew.com/blog/wp-content/themes/ttn/images/banner/xsubscribe.jpg.pagespeed.ic.am5L13-lMc.jpg" alt=""/>
+</div>
+<div class="container banner-text">
+<div class="row">
+<div class="col-xs-12">
+<img src="http://www.tothenew.com/blog/wp-content/themes/ttn/images/xour-email.png.pagespeed.ic.WebOVm1AsY.png" alt=""/>
+<div class="title">Subscribe to our Blog</div>
+<p>Get latest articles straight to your inbox</p>
+<div class="subscribe">
+<form id="subscribeForm">
+<ul class="sign-up-frm">
+<li class="width100">
+<input style="display:none" type="checkbox" value="Technology" id="tech" checked>
+<input style="display:none" type="checkbox" value="Marketing" id="mark" checked>
+<input type="text" id="email1" name="email1" value="Enter email" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+<input class="submit subscribeButton" type="submit" value="Subscribe Now">
+</li>
+</ul>
+<div id="messageBox"></div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer>
+<div class="gry-bg">
+<div class="container">
+<div class="footer-menus">
+<nav>
+<div class="f-heading">Who We Are</div>
+<ul class="clearfix menu">
+<li class="menu-item"><a rel="nofollow" href="/about-us">About</a></li>
+<li class="menu-item"><a rel="nofollow" href="/leadership">Leadership</a></li>
+<li class="menu-item"><a rel="nofollow" href="/news">News</a></li>
+<li class="menu-item"><a rel="nofollow" href="/awards">Awards</a></li>
+<li class="menu-item"><a rel="nofollow" href="/media-coverage">Media Coverage</a></li>
+<li class="menu-item"><a rel="nofollow" href="/events">Events</a></li>
+<li class="menu-item"><a rel="nofollow" href="/jobs">Career</a></li>
+<li class="menu-item"><a rel="nofollow" href="/privacy-policy">Privacy Policy</a></li>
+</ul>
+</nav>
+<nav>
+<div class="f-heading">What We Do</div>
+<ul class="clearfix menu">
+<li class="menu-item"><a href="/services">Services</a></li>
+<li class="menu-item"><a href="/technologies">Technologies</a></li>
+<li class="menu-item"><a href="/products">Products</a></li>
+<li class="menu-item"><a rel="nofollow" href="/success-stories">Success Stories</a></li>
+</ul>
+</nav>
+<nav>
+<div class="f-heading">Knowledge</div>
+<ul class="clearfix menu">
+<li class="menu-item"><a href="/blog/">Blog</a></li>
+<li class="menu-item"><a rel="nofollow" href="/insights">Insights</a></li>
+</ul>
+</nav>
+<nav>
+<div class="f-heading">Contact Us</div>
+<ul class="clearfix menu">
+<li class="menu-item"><a rel="nofollow" href="/contact-us?q=request-form">Request for Services</a></li>
+<li class="menu-item"><a rel="nofollow" href="/contact-us?q=join-form">Join us!</a></li>
+<li class="menu-item"><a rel="nofollow" href="/contact-us?q=media-form">Media Queries</a></li>
+</ul>
+</nav>
+</div>
+<div class="footer-right">
+<div class="heading">Connect With Us</div>
+<div class="social">
+<ul>
+<li class="ln"><a href="https://www.linkedin.com/company/tothenew" rel="nofollow" onclick="window.open(this.href);return false;">&nbsp;</a></li>
+<li class="twt"><a href="https://twitter.com/tothenew" rel="nofollow" onclick="window.open(this.href);return false;">&nbsp;</a></li>
+<li class="fb"><a href="https://www.facebook.com/TOTHENEWDigital/" rel="nofollow" onclick="window.open(this.href);return false;">&nbsp;</a></li>
+<li class="Gplus"><a href="https://plus.google.com/+TOTHENEW" rel="nofollow" onclick="window.open(this.href);return false;">&nbsp;</a></li>
+<li class="Ytube"><a href="https://www.youtube.com/c/tothenew" rel="nofollow" onclick="window.open(this.href);return false;">&nbsp;</a></li>
+</ul>
+</div>
+<div class="copyright">
+<img alt="ttn logo" src="http://www.tothenew.com/blog/wp-content/themes/ttn/images/xfooter-logo.png.pagespeed.ic.D7z54_1Vp-.png"><p>&copy;2016 TO THE NEW</p>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<div id="bottom">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 servicesSection">
+<div class="heading">Services</div>
+<span class="bottom-arrow-down"></span>
+<ul class="clearfix">
+<li class="clearfix">
+<span>Web Content Management</span>
+<ul class="clearfix">
+<li><a href="/wcm/web-content-management-services" title="Web Content Management">Web Content Management</a></li>
+<li><a href="/wcm/cq-aem-development-consulting" title="AEM Development">AEM Development</a></li>
+<li><a href="/wcm/drupal-development-consulting-services" title="Drupal Development">Drupal Development</a></li>
+<li><a href="/wcm/cq-aem-developer-consultants" id="f-AEM Team" title="AEM Team">AEM Team</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>DevOps</span>
+<ul class="clearfix">
+<li><a href="/devops-automation-consulting" title="DevOps as a Service">DevOps as a Service</a></li>
+<li><a href="/devops-aws" title="DevOps on AWS">DevOps on AWS</a></li>
+<li><a href="/devops-chef-puppet-docker" title="DevOps Tools">DevOps Tools</a></li>
+<li><a href="/devops-engineers-developers-team" title="DevOps Team">DevOps Team</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Digital Transformation</span>
+<ul>
+<li><a href="/digital-transformation" title="Digital Transformation">Digital Transformation</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Experience Design</span>
+<ul class="clearfix">
+<li><a href="/experience-design" title="Experience Design">Experience Design</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Digital Marketing</span>
+<ul class="clearfix">
+<li><a href="/digital-marketing" title="Digital Marketing">Digital Marketing</a></li>
+<li><a href="/digital-marketing/influencer-marketing" title="Influencer Marketing">Influencer Marketing</a></li>
+<li><a href="/digital-marketing/content-marketing" title="Content Marketing">Content Marketing</a></li>
+<li><a href="/digital-marketing/social-media-marketing" title="Social Media Marketing">Social Media Marketing</a></li>
+<li><a href="/digital-marketing/creative-strategy" title="Creative Strategy">Creative Strategy</a></li>
+<li><a href="/digital-marketing/digital-campaigns-activations" title="Digital Campaigns Activations">Digital Campaigns Activations</a></li>
+<li><a href="/digital-marketing/media-buying-planning-company" title="Media Planning and Buying">Media Planning and Buying</a></li>
+<li><a href="/digital-marketing/search-marketing" title="Search Marketing">Search Marketing</a></li>
+<li><a href="/digital-marketing/digital-strategy" title="Digital Strategy">Digital Strategy</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Mobility</span>
+<ul class="clearfix">
+<li><a href="/mobile-application-development-services" title="Mobility">Mobility</a></li>
+<li><a href="/mobile-ios-application-development-services" title="iOS App Development">iOS App Development</a></li>
+<li><a href="/mobile-android-application-development-services" title="Android Development">Android Development</a></li>
+<li><a href="/mobile-smart-tv-application-development" title="Smart TV Development">Smart TV Development</a></li>
+<li><a href="/experience-design" title="Mobile Application Design">Mobile Application Design</a></li>
+<li><a href="/testing/automated-mobile-application-testing" title="Mobile Automation Testing">Mobile Automation Testing</a></li>
+<li><a href="/mobile-hybrid-application-development" title="Hybrid Application Development">Hybrid Application Development</a></li>
+<li><a href="/mobile-application-developers" title="Mobility Team">Mobility Team</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Frontend Engineering</span>
+<ul class="clearfix">
+<li><a href="/front-end-angularjs-development" title="JavaScript Engineering">JavaScript Engineering</a></li>
+<li><a href="/front-end-angularjs-development" title="Frontend Development">Frontend Development</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Testing</span>
+<ul class="clearfix">
+<li><a href="/testing/automated-independent-manual-testing" title="Automation Testing">Automation Testing</a></li>
+<li><a href="/testing/automated-mobile-application-testing" title="Mobile Automation Testing">Mobile Automation Testing</a></li>
+<li><a href="/testing/automated-independent-manual-testing" title="Independent Testing">Independent Testing</a></li>
+<li><a href="/testing/automated-independent-manual-testing" title="Manual Testing">Manual Testing</a></li>
+<li><a href="/testing/testing-team" title="Testing Team">Testing Team</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Backend Engineering</span>
+<ul class="clearfix">
+<li><a href="/mean-node-js-development-consulting" title="Node.js Development">Node.js Development</a></li>
+<li><a href="/grails-application-development" title="Grails Development">Grails Development</a></li>
+<li><a href="/java-development-services" title="Java Development">Java Development</a></li>
+<li><a href="/mean-stack-web-development-consulting" title="MEAN Development">MEAN Development</a></li>
+<li><a href="/grails-groovy-developers" title="Grails Team">Grails Team</a></li>
+<li><a href="/mean-angularjs-nodejs-developers-consultants" title="MEAN Team">MEAN Team</a></li>
+<li><a href="/mean-angularjs-nodejs-developers-consultants" title="Node Team">Node Team</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Product Engineering</span>
+<ul class="clearfix">
+<li><a href="/product-engineering" title="Product Engineering">Product Engineering</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Analytics</span>
+<ul class="clearfix">
+<li><a href="/analytics" title="Analytics">Analytics</a></li>
+<li><a href="/analytics/social-media-analytics" title="Social Media Analytics">Social Media Analytics</a></li>
+<li><a href="/analytics/omni-channel-analytics" title="Omni-channel Analytics">Omni-channel Analytics</a></li>
+<li><a href="/analytics/analytics-team" title="Analytics Team">Analytics Team</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Products</span>
+<ul class="clearfix">
+<li><a href="/products" title="Products">Products</a></li>
+<li><a href="/digital-ott-video-solution" title="VideoReady">VideoReady</a></li>
+</ul>
+</li>
+<li class="clearfix">
+<span>Video Solutions</span>
+<ul class="clearfix">
+<li><a href="/digital-video-solutions" title="Video Solutions">Video Solutions</a></li>
+<li><a href="/digital-ott-video-solution" title="VideoReady">VideoReady</a></li>
+<li><a href="/digital-video-managed-services" title="Video Managed Services">Video Managed Services</a></li>
+<li><a href="/digital-multiscreen-video-solution" title="Multiscreen Solutions">Multiscreen Solutions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">var _hsq=_hsq||[];_hsq.push(["setContentType","blog-post"]);(function(d,s,i,r){if(d.getElementById(i)){return;}
+var n=d.createElement(s),e=document.getElementsByTagName(s)[0];n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/481864.js';e.parentNode.insertBefore(n,e);})(document,"script","hs-analytics",300000);</script>
+<script type='text/javascript'>var ak_js=document.getElementById("ak_js");if(!ak_js){ak_js=document.createElement('input');ak_js.setAttribute('id','ak_js');ak_js.setAttribute('name','ak_js');ak_js.setAttribute('type','hidden');}
+else{ak_js.parentNode.removeChild(ak_js);}
+ak_js.setAttribute('value',(new Date()).getTime());var commentForm=document.getElementById('commentform');if(commentForm){commentForm.appendChild(ak_js);}
+else{var replyRowContainer=document.getElementById('replyrow');if(replyRowContainer){var children=replyRowContainer.getElementsByTagName('td');if(children.length>0){children[0].appendChild(ak_js);}}}</script>
+<script type='text/javascript' src='http://www.tothenew.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript'>;(function()
+{SyntaxHighlighter=SyntaxHighlighter||(typeof require!=='undefined'?require('shCore').SyntaxHighlighter:null);function Brush()
+{var keywords='break case catch class continue '+'default delete do else enum export extends false  '+'for function if implements import in instanceof '+'interface let new null package private protected '+'static return super switch '+'this throw true try typeof var while with yield';var r=SyntaxHighlighter.regexLib;this.regexList=[{regex:r.multiLineDoubleQuotedString,css:'string'},{regex:r.multiLineSingleQuotedString,css:'string'},{regex:r.singleLineCComments,css:'comments'},{regex:r.multiLineCComments,css:'comments'},{regex:/\s*#.*/gm,css:'preprocessor'},{regex:new RegExp(this.getKeywords(keywords),'gm'),css:'keyword'}];this.forHtmlScript(r.scriptScriptTags);};Brush.prototype=new SyntaxHighlighter.Highlighter();Brush.aliases=['js','jscript','javascript','json'];SyntaxHighlighter.brushes.JScript=Brush;typeof(exports)!='undefined'?exports.Brush=Brush:null;})();</script>
+<script type='text/javascript'>(function(){var corecss=document.createElement('link');var themecss=document.createElement('link');var corecssurl="http://www.tothenew.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";if(corecss.setAttribute){corecss.setAttribute("rel","stylesheet");corecss.setAttribute("type","text/css");corecss.setAttribute("href",corecssurl);}else{corecss.rel="stylesheet";corecss.href=corecssurl;}
+document.getElementsByTagName("head")[0].insertBefore(corecss,document.getElementById("syntaxhighlighteranchor"));var themecssurl="http://www.tothenew.com/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";if(themecss.setAttribute){themecss.setAttribute("rel","stylesheet");themecss.setAttribute("type","text/css");themecss.setAttribute("href",themecssurl);}else{themecss.rel="stylesheet";themecss.href=themecssurl;}
+document.getElementsByTagName("head")[0].insertBefore(themecss,document.getElementById("syntaxhighlighteranchor"));})();SyntaxHighlighter.config.strings.expandSource='+ expand source';SyntaxHighlighter.config.strings.help='?';SyntaxHighlighter.config.strings.alert='SyntaxHighlighter\n\n';SyntaxHighlighter.config.strings.noBrush='Can\'t find brush for: ';SyntaxHighlighter.config.strings.brushNotHtmlScript='Brush wasn\'t configured for html-script option: ';SyntaxHighlighter.defaults['auto-links']=false;SyntaxHighlighter.defaults['pad-line-numbers']=false;SyntaxHighlighter.defaults['toolbar']=false;SyntaxHighlighter.all();</script>
+<style id='yarppRelatedCss-css' media='all'>.yarpp-related{margin:1em 0!important}.yarpp-related a{text-decoration:none!important;font-weight:bold!important}.yarpp-related .yarpp-thumbnail-title{text-align:left!important;font-weight:bold!important;font-size:96%!important;text-decoration:none!important}.yarpp-related h3{font-weight:bold!important;padding:0 0 5px 0!important;font-size:125%!important;text-transform:capitalize!important;margin:0!important}.yarpp-related .yarpp-promote{clear:both!important;background:url(http://api.engage.bidsystem.com/adk_mini_logo.png) no-repeat!important;float:right!important;text-indent:-1000px!important;cursor:pointer!important;color:#666!important;font-size:11px!important;height:17px!important;width:78px!important}</style>
+<script src="http://www.tothenew.com/blog/wp-includes,_js,_comment-reply.min.js,qver==4.0.2+wp-content,_themes,_ttn,_js,_navigation.js,qver==20140711.pagespeed.jc.vP9951tMlU.js"></script><script>eval(mod_pagespeed_foVj98yQuj);</script>
+<script>eval(mod_pagespeed_zQSVSS1ju$);</script>
+<script type="text/javascript">jQuery(function(e){jQuery("#cat").selectbox();jQuery(".postform").selectbox();jQuery('.normal .main-cat .heading').click(function(){jQuery(this).siblings().slideToggle();jQuery(this).parent().toggleClass('active');jQuery('.overlay-cat').toggleClass('hide');});jQuery('.overlay-cat').click(function(){jQuery('.normal .main-cat .heading').parent().removeClass('active');jQuery('.cat-dropdown').slideUp();jQuery('.overlay-cat').toggleClass('hide');});if(!(jQuery.cookie('user'))){var tOut=setTimeout(function(){if(localStorage.getItem("mypop")!="true"){if(jQuery('#subModal').length){}else{jQuery('#subModal').remove();jQuery('.modal-backdrop').remove();jQuery('body').append(subscribeModal);jQuery("#subModal").modal('show');}
+localStorage.setItem("mypop","true");}},70000);}});</script>
+<script type="text/javascript">jQuery(window).scroll(function(){var headerHeight=jQuery('#header').innerHeight();var resource=jQuery('.resources').height();var suggested=jQuery('.suggested').height();var totalHeight=headerHeight+resource+suggested+360;var sticky=jQuery('.white');var sticky1=jQuery('.followUs');scroll=jQuery(window).scrollTop();if(scroll>=300){sticky.addClass('fixed');jQuery('#blog-section').css('padding-top','91px');}else{sticky.removeClass('fixed');jQuery('#blog-section').css('padding-top','19px');}
+if(scroll>=totalHeight){var widthS=jQuery('.suggested').width()+31;sticky1.addClass('fixed1');sticky1.css('width',widthS);}else{sticky1.removeClass('fixed1');sticky1.css('width','100%');}});jQuery(document).ready(function(){bindFooterScroller();jQuery(".year-data").click(function(){jQuery(this).parents('li').find('.blog-month').slideToggle();jQuery(this).find('.plus-icon').toggleClass('active');jQuery(this).parent().siblings().find('.plus-icon').removeClass('active');jQuery(this).parent().siblings().children().next().slideUp();return false;});jQuery('.burger-container').click(function(){jQuery(this).parent().parent().find('#menu').toggleClass('menu-opened');});jQuery('.f-heading').on('click',function(){jQuery(this).parent().toggleClass('visible');});var catWidth=jQuery('.normal').width()-15;jQuery('.cat-dropdown').width(catWidth);jQuery('.cat-dropdown').css('font-size','100%');if(jQuery(window).width()<=1024){var catWidth=jQuery('.normal').width()-15;jQuery('.cat-dropdown').width(catWidth);jQuery('.cat-dropdown').css('font-size','75%');}
+if(jQuery(window).width()<=640){var catWidth=jQuery('.normal').width()-15;jQuery('.cat-dropdown').width(catWidth);jQuery('.cat-dropdown').css('font-size','100%');}});jQuery(window).resize(function(){var catWidth=jQuery('.normal').width()-15;jQuery('.cat-dropdown').width(catWidth);jQuery('.cat-dropdown').css('font-size','100%');if(jQuery(window).width()<=1024){var catWidth=jQuery('.normal').width()-15;jQuery('.cat-dropdown').width(catWidth);jQuery('.cat-dropdown').css('font-size','75%');}
+if(jQuery(window).width()<=640){var catWidth=jQuery('.normal').width()-15;jQuery('.cat-dropdown').width(catWidth);jQuery('.cat-dropdown').css('font-size','100%');}});$header=jQuery("#header"),$clone=$header.before($header.clone().addClass("clone"));jQuery(window).scroll(function(){jQuery("#header").toggleClass("down",(jQuery(window).scrollTop()>100));})
+jQuery.fn.scrollStopped=function(callback){var jQuerythis=jQuery(this),self=this;jQuerythis.scroll(function(){if(jQuerythis.data('scrollTimeout')){clearTimeout(jQuerythis.data('scrollTimeout'));}
+jQuerythis.data('scrollTimeout',setTimeout(callback,250,self));});};function bindFooterScroller(){jQuery(window).scroll(function(){var headerHeight=jQuery('#header').innerHeight();var sticky1=jQuery('.followUs');var sticky=jQuery('.white')
+var footerElement=jQuery('#subscribe-blog');if(isScrolledIntoView(footerElement)){sticky.hide();sticky1.hide();jQuery('#blog-section').css('padding-top','19px');}
+else{var headerHeight=jQuery('#header').innerHeight();var resource=jQuery('.resources').height();var suggested=jQuery('.suggested').height();var totalHeight=headerHeight+resource+suggested+360;var sticky1=jQuery('.followUs');sticky.show();sticky1.show();var sticky=jQuery('.white');var sticky1=jQuery('.followUs');scroll=jQuery(window).scrollTop();if(scroll>=300){jQuery('#blog-section').css('padding-top','91px');jQuery('.controls').css('display','block');}else{jQuery('#blog-section').css('padding-top','19px');jQuery('.controls').css('display','none');}
+if(scroll>=totalHeight){var widthS=jQuery('.suggested').width()+31;sticky1.addClass('fixed1');sticky1.css('width',widthS);}else{sticky1.removeClass('fixed1');sticky1.css('width','100%');}}})}
+function isScrolledIntoView(jQueryelem){var docViewTop=jQuery(window).scrollTop()+jQuery(window).height();var elemTop=jQueryelem.offset().top;return(elemTop<=docViewTop);}
+function bindLoaderScroller(){jQuery(window).scroll(function(){var loaderElement=jQuery('#loader');if(isScrolledIntoView1(loaderElement)){setTimeout(function(){jQuery(".left-content .border:eq(9), .left-content .border:eq(10), .left-content .border:eq(11), .left-content .border:eq(12), .left-content .border:eq(13), .left-content .border:eq(14), .left-content .border:eq(15), .left-content .border:eq(16),.left-content .border:eq(17), .more-post").fadeIn("slow");jQuery('#loader').fadeOut("slow");jQuery('.left-content').isotope({itemSelector:'.border'});},2000);}})}
+function isScrolledIntoView1(jQueryelem1){var docViewTop=jQuery(window).scrollTop()+jQuery(window).height();var elemTop=jQueryelem1.offset().top;return(elemTop<=docViewTop);}
+jQuery(window).load(function(){var Wwidth=jQuery(window).width();if((Wwidth<=767)){var rsW=jQuery('.resources1 .banner-text').innerHeight();jQuery('.resources1 .overlay img').css('height',rsW);}else{jQuery('.resources1 .overlay img').css('height','auto');}});jQuery(window).resize(function(){var Wwidth=jQuery(window).width();if((Wwidth<=767)){var rsW=jQuery('.resources1 .banner-text').innerHeight();jQuery('.resources1 .overlay img').css('height',rsW);}else{jQuery('.resources1 .overlay img').css('height','auto');}});</script>
+<script type="application/ld+json">
+    {
+    "@context" : "http://schema.org",
+    "@type" : "Organization",
+    "name" : "TO THE NEW",
+    "url" : "http://www.tothenew.com",
+	"logo" : "http://www.tothenew.com/blog/wp-content/themes/ttn/images/logo-large.png",
+    "sameAs" : [
+    "https://www.linkedin.com/company/tothenew",
+    "https://twitter.com/TOTHENEW",
+    "hthttps://www.facebook.com/tothenewdigital/",
+    "https://plus.google.com/+TOTHENEW",
+    "https://www.youtube.com/c/tothenew",
+    "http://www.slideshare.net/tothenewtech",
+    "http://www.slideshare.net/tothenew"
+    ]
+    }
+</script>
+<input type="hidden" name="formId" id="formId" value="d144b996-1d58-40ae-850a-fa6f1f949be3"/>
+<input type="hidden" name="thankyoupage" id="thankyoupage" value="http://www.tothenew.com/blog-thanks-form"/>
+<div class="overlay-cat hide"></div>
+</div>
+</body>
+</html>

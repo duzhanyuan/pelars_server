@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+<union-subclass name="pelarsServer.Audio" extends="pelarsServer.BaseData" table="Audios">
+    
+         <property name="value">
+            <column name="VALUE" not-null="true" />
+        </property>
+        
+      </union-subclass>
+      
+</hibernate-mapping>

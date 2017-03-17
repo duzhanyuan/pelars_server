@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="vis/dist/vis.js"></script>
+<link href="timeline.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jquery/dist/jquery.js"></script>
+</head>
+<body>
+	<div id="visualization"></div>
+
+
+	<script type="text/javascript">
+	function getParam ( sname )
+{
+  var params = location.search.substr(location.search.indexOf("?")+1);
+  var sval = "";
+  params = params.split("&");
+    // split param and value into individual pieces
+    for (var i=0; i<params.length; i++)
+       {
+         temp = params[i].split("=");
+         if ( [temp[0]] == sname ) { sval = temp[1]; }
+       }
+  return sval;
+}
+
+	counterout = 0
+
+	function customOrder(a, b) {
+		// order by id
+		return a.id - b.id;
+	}
+
+	function fillGraph(data){
+
+		var audio_samples = []
+
+		for ( var i = 0; i < data.length; i++) {
+				var to_push = {}
+				var obj = data[i];
+
+				to_push['x'] = obj['time']
+				to_push['y'] = obj['value']
+				to_push['group'] = 0
+				audio_samples.push(to_push)
+				}
+
+				if(threshold != 0){
+
+					for ( var i = 0; i < data.length; i++) {		
+						var threshpoint = {}	
+	
+						threshpoint['x'] = data[i]['time']
+						threshpoint['y'] = threshold
+						threshpoint['group'] = 1
+						audio_samples.push(threshpoint)
+					}
+				}
+
+		return audio_samples;		
+	}
+
+
+	var session = getParam("session")
+	var threshold = getParam("thresh")
+
+	var names = ['Audio', 'Threshold'];
+	var groups = new vis.DataSet();
+
+	groups.add({
+	       id: 0,
+	       content: names[0]
+	   });
+
+
+	if(threshold == ""){
+		threshod = 0
+	}
+	else{
+		groups.add({
+	    	id: 1,
+	    	content: names[1]
+	    });
+	}
+
+
+	var container = document.getElementById('visualization');
+	var items = []
+	var options = {
+   		drawPoints : false,
+   		defaultGroup: 'ungrouped',
+      	legend: true
+	};
+	$.getJSON("/pelars/data/" + session +"/audio", function(data) {
+			items = fillGraph(data)
+			var dataset = new vis.DataSet(items);
+			var graph2d = new vis.Graph2d(container, dataset, groups, options)
+		});
+
+
+	</script>
+
+	<div id="visualization"></div>
+	<div id="loading"></div>
+
+</body>
+</html>

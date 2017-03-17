@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Pelars server interface</display-name>
+ 
+
+  <listener>
+        <listener-class>servlets.InitializationListener</listener-class>
+    </listener>
+  
+  <filter>
+    <filter-name>CORSFilter</filter-name>
+    <filter-class>servlets.SimpleCORSFilter</filter-class>
+  </filter>
+  
+  <filter>
+    <filter-name>UserFilter</filter-name>
+    <filter-class>servlets.UserFilter</filter-class>
+  </filter>
+ 
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>authorization.AuthFilter</filter-class>
+  </filter>
+  
+  <filter>
+    <filter-name>CookieFilter</filter-name>
+    <filter-class>servlets.CookieFilter</filter-class>
+  </filter>
+  
+  <filter>
+    <filter-name>TimeFilter</filter-name>
+    <filter-class>servlets.TimeFilter</filter-class>
+  </filter>
+
+  
+   <filter-mapping>
+    <filter-name>CORSFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+  <filter-name>UserFilter</filter-name>
+  <url-pattern>/user/*</url-pattern>
+  </filter-mapping>
+
+  
+   <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <!--url-pattern>/collector/*<url-pattern-->
+    <url-pattern>/user/*</url-pattern>
+    <url-pattern>/session/*</url-pattern>
+    <url-pattern>/data/*</url-pattern>
+    <url-pattern>/ide/*</url-pattern>
+    <url-pattern>/template/*</url-pattern>
+    <url-pattern>/multimedia/*</url-pattern>
+    <url-pattern>/calibration/*</url-pattern>
+    <url-pattern>/live/*</url-pattern>
+    <url-pattern>/phase/*</url-pattern>
+    <url-pattern>/deploy/*</url-pattern>
+    <url-pattern>/visualization.jsp</url-pattern>
+    <url-pattern>/admin-page.jsp</url-pattern>
+    <url-pattern>/admin-session.jsp</url-pattern>
+    <url-pattern>/widgets.jsp</url-pattern>
+    <url-pattern>/story_board.html</url-pattern>
+    <url-pattern>/wholeCard.html</url-pattern>
+    <url-pattern>/3d_viewer.html</url-pattern>
+    <url-pattern>/piechart.html</url-pattern>
+     <url-pattern>/timeline.html</url-pattern>
+    <url-pattern>/visualize/*</url-pattern>
+    <url-pattern>/audio.html</url-pattern>
+    <url-pattern>/goodsession/*</url-pattern>
+    <url-pattern>/completevideo/*</url-pattern>
+    <url-pattern>/newviz/*</url-pattern>
+    </filter-mapping>
+  
+   <filter-mapping>
+    <filter-name>CookieFilter</filter-name>
+ 	<url-pattern>/user/*</url-pattern>
+    <url-pattern>/session/*</url-pattern>
+    <url-pattern>/data/*</url-pattern>
+    <url-pattern>/ide/*</url-pattern>
+    <url-pattern>/template/*</url-pattern>
+    <url-pattern>/multimedia/*</url-pattern>
+    <url-pattern>/calibration/*</url-pattern>
+    <url-pattern>/live/*</url-pattern>
+    <url-pattern>/phase/*</url-pattern>
+    <url-pattern>/visualization.jsp</url-pattern>
+    <url-pattern>/admin-page.jsp</url-pattern>
+    <url-pattern>/admin-session.jsp</url-pattern>
+    <url-pattern>/widgets.jsp</url-pattern>
+    <url-pattern>/visualize/*</url-pattern>
+  </filter-mapping>
+  
+  
+  <filter-mapping>
+    <filter-name>TimeFilter</filter-name>w1
+    <url-pattern>/op/result/*</url-pattern>
+    <url-pattern>/data/*</url-pattern>
+  </filter-mapping>  
+  
+  
+  <!-- security-constraint>
+  <web-resource-collection>
+     <web-resource-name>My Secure Stuff</web-resource-name>
+     <url-pattern>/multimedia/*</url-pattern>
+     <url-pattern>/user/*</url-pattern>
+     <url-pattern>/password/*</url-pattern>
+     <url-pattern>/index.jsp</url-pattern>
+     <url-pattern>/login-success.jsp</url-pattern>
+     <url-pattern>/registration.jsp</url-pattern>s
+     <url-pattern>/story_board.html</url-pattern>
+     <url-pattern>/admin-page.jsp</url-pattern>
+   	 <url-pattern>/admin-session.jsp</url-pattern>
+  </web-resource-collection>
+  <user-data-constraint>
+     <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+  </user-data-constraint>
+</security-constraint --> 
+
+</web-app>

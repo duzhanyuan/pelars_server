@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+  <union-subclass name="pelarsServer.Face" extends="pelarsServer.BaseData" table="Faces">
+       
+        <property name="num">
+            <column name="NUM"  not-null="true" />
+        </property>
+ 
+        <property name="x">
+            <column name="X"  not-null="true" />
+        </property>
+ 
+        <property name="x1">
+            <column name="X1"  not-null="true" />
+        </property>
+        
+        <property name="x2">
+            <column name="X2" not-null="false" />
+        </property>
+        
+        <property name="y">
+            <column name="Y"  not-null="true" />
+        </property>
+        
+        <property name="y1">
+            <column name="Y1" not-null="true" />
+        </property>
+        
+        <property name="y2">
+            <column name="Y2" not-null="false" />
+        </property>
+        
+         <property name="pos_z0">
+            <column name="Z"  not-null="false" />
+        </property>
+        
+        <property name="pos_z1">
+            <column name="Z1" not-null="false" />
+        </property>
+        
+        <property name="pos_z2">
+            <column name="Z2" not-null="false" />
+        </property>
+        
+        
+         <property name="distance">
+            <column name="DISTANCE" not-null="false" />
+        </property>
+        
+    </union-subclass>
+</hibernate-mapping>

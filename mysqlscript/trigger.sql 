@@ -1,0 +1,49 @@
+DELIMITER |
+CREATE TRIGGER invalidate_cache_faces AFTER UPDATE ON Faces
+  FOR EACH ROW
+  BEGIN
+ 	DECLARE cmd CHAR(255);
+ 	DECLARE result int(10);
+    SET cmd=CONCAT('/home/poweredge/pelars/pelars_server/mysqlscript/n_trigger.sh ', NEW.session);
+    SET result=sys_exec(cmd);
+   	END;
+
+CREATE TRIGGER invalidate_cache_hands AFTER UPDATE ON Hands
+  FOR EACH ROW
+  BEGIN
+ 	DECLARE cmd CHAR(255);
+ 	DECLARE result int(10);
+    SET cmd=CONCAT('/home/poweredge/pelars/pelars_server/mysqlscript/n_trigger.sh ', NEW.session);
+    SET result=sys_exec(cmd);
+   	END;
+
+CREATE TRIGGER invalidate_cache_audios AFTER UPDATE ON Audios
+  FOR EACH ROW
+  BEGIN
+  DECLARE cmd CHAR(255);
+  DECLARE result int(10);
+    SET cmd=CONCAT('/home/poweredge/pelars/pelars_server/mysqlscript/n_trigger.sh ', NEW.session);
+    SET result=sys_exec(cmd);
+    END;
+
+    CREATE TRIGGER invalidate_cache_ides AFTER UPDATE ON Ides
+      FOR EACH ROW
+      BEGIN
+      DECLARE cmd CHAR(255);
+      DECLARE result int(10);
+        SET cmd=CONCAT('/home/poweredge/pelars/pelars_server/mysqlscript/n_trigger.sh ', NEW.session);
+        SET result=sys_exec(cmd);
+        END;
+
+CREATE TRIGGER invalidate_cache_buttons AFTER UPDATE ON Buttons
+      FOR EACH ROW
+      BEGIN
+      DECLARE cmd CHAR(255);
+      DECLARE result int(10);
+        SET cmd=CONCAT('/home/poweredge/pelars/pelars_server/mysqlscript/n_trigger.sh ', NEW.session);
+        SET result=sys_exec(cmd);
+        END;
+
+|
+
+DELIMITER ;

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" type="image/png" href="pelarslogo.png" sizes="16x16">
+<script src="signals.min.js" type="text/javascript"></script>
+<script src="crossroads.min.js" type="text/javascript"></script>
+<script src="tables.js" type="text/javascript"></script>
+<script type="text/javascript"
+	src="jquery/dist/jquery.min.js"></script>
+<meta charset="US-ASCII">
+
+<script type="text/javascript">
+
+	var message = {
+		
+		};
+
+	var cur_message;
+
+	var operation;
+	var table;
+	var field;
+
+	var pipe_index = 0;
+	var pipe_array = [];
+
+	var submitted_map;
+
+	var context_table = "";
+
+	var StringFields = ["session", "expression", "time", "phase", "parallelism", "window_size", "overlap"]
+
+	function contains(array, value){
+		for (i=0; i< array.length; i++){
+			if(array[i] == value) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function updateMessage(value){
+
+		message["type"] = value;
+
+		$("#message").text(JSON.stringify(message, null, 1));
+
+		//if the operation is a map must enter in "map context"
+
+		//now must update form...
+		jQuery.ajax({
+			type : "GET",
+			url : "/pelars/op/help/" + value,
+			async : "false",
+			dataType : "json",
+			contentType : "application/json; charset=utf-8",
+			success : function(XHR, status) {
+
+					$.each(XHR, function() {
+
+					if($("#ol").has("#"+this).length == 0 || this == "exrpession"){
+
+						if(this == "operation"){
+							$('#ol').append('<li id = "map_operation" >').append(getOperationSelectHTML("mapMessage")).append('</li>')
+						}
+						else{
+
+							if(this == "operations"){
+								$('#ol').append('<li class = "pipe_operation" >').append(getOperationSelectHTML("pipeMessage")).append('</li>')
+
+							}
+							else{
+				 		$("#ol").append('<li id="' + this + '">' + this + ': </li>');
+				 		updateSelect(this,"simple");
+				 	}
+				 	}
+				 	}
+				 });
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(xhr.responseText);
+				alert(thrownError);
+		}
+	});
+
+		return true;
+	}
+
+	function pipeMessage(value){
+
+		var op_representation = {}
+
+		op_representation['type'] = value
+
+		message['operations'] = pipe_array;
+
+		pipe_array.push(op_representation)
+		
+		$("#message").text(JSON.stringify(message, null, 1));
+
+			//now must update form...
+			jQuery.ajax({
+				type : "GET",
+				url : "/pelars/op/help/" + value,
+				async : "false",
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(XHR, status) {
+
+
+						$.each(XHR, function() {
+
+						if($("#ol").has("#"+this).length == 0){
+						
+					 		$("#ol").append('<li id="' + this + '">' + this + ': </li>');
+					 		updateSelect(this,"pipe");
+					 	
+					 	}
+					 });
+
+						if(context_table != ""){
+							 getTable(context_table, "pipe")
+						}
+
+					$('#ol').append('<button type="button" onclick="return submitPipeOperation()"> Submit pipe operation</button>') 
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(xhr.responseText);
+					alert(thrownError);
+			}
+		});
+
+		return false;
+	}
+
+	function submitPipeOperation(){
+
+		//update JSON message context
+		pipe_index ++;
+		$('#ol').append('<li class = "pipe_operation" >').append(getOperationSelectHTML("pipeMessage")).append('</li>')
+
+		return false;
+	}
+
+	function mapMessage(value){
+
+		var op_representation = {}
+
+		op_representation['type'] = value
+
+		message['operation'] = op_representation
+
+		$("#message").text(JSON.stringify(message, null, 1));
+
+			//now must update form...
+			jQuery.ajax({
+				type : "GET",
+				url : "/pelars/op/help/" + value,
+				async : "false",
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(XHR, status) {
+
+						$.each(XHR, function() {
+
+						if($("#ol").has("#"+this).length == 0){
+						
+					 		$("#ol").append('<li id="' + this + '">' + this + ': </li>');
+					 		updateSelect(this,"map");
+					 	
+					 	}
+					 });
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(xhr.responseText);
+					alert(thrownError);
+			}
+		});
+
+		return false;
+	}
+
+	function updateSelect(field,op){
+
+			console.log("passed: " + JSON.stringify(message, null, 1))
+
+			jQuery.ajax({
+				type : "GET",
+				async : "false",
+				url : "/pelars/op/help/" + field,
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(XHR, status) {
+
+						$("#" + field + "_select").empty()
+
+						if(field == "table"){
+
+							$("#"+field).append('<select name="' + field +'" id="' + field+ '_select" onchange="getTable(this.value,\'' + op + '\')">')
+						}
+						else{
+
+							if(contains(StringFields, field) == true){
+
+							$("#"+field).append('<input type="text" name="' + field +'" id="' + field+ '_select" onchange="changeField(\'' + field +'\',this.value,\'' + op + '\')">')
+
+						}
+						else{
+
+							$("#"+field).append('<select name="' + field +'" id="' + field+ '_select">')
+					}
+					}
+						if(field != "phase" && field != "name"){
+								$("#" + field + "_select").attr("required", "true")
+							}
+
+						$("#"+field + "_select").append('<option value="">none</option>');
+						
+						$.each(XHR, function() {
+					 		$("#"+field + "_select").append('<option value="' + this +'" id = "' + this + '_option">' + this + '</option>');
+					 });
+						
+						$("#"+field).append('</select>')
+
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(xhr.responseText);
+					alert(thrownError);
+			}
+		});
+	}
+
+	function getTable(value,op){
+
+		var cur_message = message
+
+		if(op == "map"){
+			cur_message = message['operation']
+		}
+
+		if(op == "pipe"){
+			cur_message = message['operations'][pipe_index]
+		}
+
+		cur_message["table"] = value;
+		$("#message").text(JSON.stringify(message, null, 1));
+
+		//GET  by id field_select AND APPEND to it the result of /op/help/{table}
+			jQuery.ajax({
+				type : "GET",
+				async : "false",
+				url : "/pelars/op/help/" + value,
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(XHR, status) {
+
+						context_table = value;
+
+						$("#field_select").empty()
+
+						$("#field_select").attr("onchange", "getField(this.value,\'" + op +"\')");
+						//$("#field_select").append('<option value="none" onchange="getField(this.value)"></option>');
+
+						$("#field_select").append('<option value="none"></option>');
+
+						$.each(XHR, function() {
+					 	$("#field_select").append('<option value="' + this +'" onchange="changeField(field, this.value,\'' + op + '\')">' + this + '</option>');
+					 });
+
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+					alert(xhr.status);
+					alert(xhr.responseText);
+					alert(thrownError);
+			}
+		});
+	}
+
+	function changeField(a,value,op){
+		if(op == "map"){
+			message['operation'][a] = value;
+		}
+		else{
+
+			if(op == "pipe"){
+				message['operations'][pipe_index][a] = value;
+			}
+			else{
+			message[a] = value
+			}
+		}
+		$("#message").text(JSON.stringify(message, null, 1));
+	}
+
+	function getField(value,op){
+		if(op == "map"){
+			message['operation']['field'] = value;
+		}
+		else{
+
+			if(op == "pipe"){
+				message['operations'][pipe_index]['field'] = value;
+			}
+			else{
+			message['field'] = value
+			}
+		}
+		$("#message").text(JSON.stringify(message, null, 1));
+	}
+
+	function getOperationResult(id){
+			//ask the result
+				jQuery.ajax({
+					type : "GET",
+					url : "/pelars/op/" + id +"/result",
+					dataType : "json",
+					success : function(jqXHR, status) {
+
+						//append result to result div
+						$("#result").text(JSON.stringify(jqXHR,null,2))
+		
+					},
+					error : function(xhr, ajaxOptions, thrownError) {
+						alert(xhr.status);
+						alert(xhr.responseText);
+						alert(thrownError);
+					}
+				});
+	}
+
+	function submitOperation(){
+		//take the message and PUT + GET on /op
+
+		var to_pass = JSON.stringify(message, null, 1)
+		console.log(to_pass)
+
+		jQuery.ajax({
+			type : "PUT",
+			url : "/pelars/op",
+			data : to_pass,
+			dataType : "json",
+
+			success : function(jqXHR, status) {
+
+				var id = jqXHR.id
+				window.setTimeout(function(){getOperationResult(id)}, 2000)
+
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(xhr.responseText);
+				alert(thrownError);
+			}
+		});
+
+		return false;
+	}
+
+	function getOperationSelectHTML(param){
+		var op_map = $("#operation_li").clone();
+		var op_select = op_map.find("#operation_select");
+
+		op_select.attr("onchange", param + "(this.value)")
+		var op_options = op_select.find("option")
+		op_options.remove(".complex")
+
+		return op_map.html()
+	}
+	
+</script>
+
+
+</head>
+
+
+<body>
+<div class="container" style="width: 100%;">
+	<div class="container" style="float:left; width: 60%; text-align: center">
+	<form id="max_form" onsubmit="return submitOperation()">
+	<fieldset id="fields">
+		<legend>Select Operation</legend>
+			<ol id = "ol">
+				<li id = "operation_li" >Operation: 	<select id = "operation_select" onchange="updateMessage(this.value)" name="operation" required>
+			<option class = "simple" value="">none</option>
+			<option class = "simple" value="mean">mean</option>
+			<option class = "simple" value="variance">variance</option>
+			<option class = "simple" value="multistatistics">multistatistics</option>
+			<option class = "simple" value="filter">filter</option>
+			<option class = "simple" value="hand_speed">hands speed</option>
+			<option class = "simple" value="num_faces">number of faces</option>
+			<option class = "simple" value="media_info">multimedia information</option>
+			<option class = "simple" value="presence">presence at the desk</option>
+			<option class = "complex" value="map">map</option>
+			<option class = "complex" value="pipeline">pipeline</option>
+		</select>
+				</li>
+			</ol>
+		</fieldset>
+		<input type="submit" value="Submit operation"> 
+	</form>
+	</div>
+	<div style="float:right; text-align: center;  width: 40%;">
+		<table frame="box">
+		  <tr>
+		    <th>JSON Message</th>
+		  </tr>
+		  <tr>
+		    <td><pre id="message"></pre>
+		    </td>
+		  </tr>
+		</table>
+		<div style=" margin-top: 1cm; text-align: center;  border: 2px solid #ccc;">
+			<pre id="result"></pre>
+		</div>
+	</div>
+</div>
+<div style="clear:both"></div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+  <union-subclass name="pelarsServer.Hand" extends="pelarsServer.BaseData" table="Hands">
+       
+    	<property name="num">
+            <column name="NUM"  not-null="true" />
+        </property>
+ 
+        <property name="tx">
+            <column name="X"  not-null="true" />
+        </property>
+ 
+        <property name="ty">
+            <column name="Y"  not-null="true" />
+        </property>
+        
+        <property name="tz">
+            <column name="Z" not-null="true" />
+        </property>
+        
+         <property name="rx">
+            <column name="RX"  not-null="true" />
+        </property>
+ 
+        <property name="ry">
+            <column name="RY"  not-null="true" />
+        </property>
+        
+        <property name="rz">
+            <column name="RZ" not-null="true" />
+        </property>
+        
+         <property name="rw">
+            <column name="RW" not-null="true" />
+        </property>   
+     
+    </union-subclass>
+</hibernate-mapping>

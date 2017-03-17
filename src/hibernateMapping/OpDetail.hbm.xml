@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+    <class name="pelarsServer.OpDetail" table="OpDetails">
+    	
+    	
+	   <id
+  	  name="id"
+   	  type="long"
+      column="ID"
+      >
+     <generator class="increment"/>
+	   </id>
+        
+        <property name="status">
+            <column name="STATUS"  not-null="true" />
+        </property>
+ 
+        <property name="execution_time">
+            <column name="EXECUTION_TIME"  not-null="false" />
+        </property>
+        
+        <property name="submission_time">
+            <column name="SUBMISSION" not-null="true" />
+        </property>
+        
+          <property name="result">
+            <column name="RESULT" not-null="false"/>
+        </property>
+        
+          <property name="failure_description">
+            <column name="FAILURE" not-null="false" />
+        </property>
+        
+           <property name="is_stream">
+            <column name="STREAM" not-null="false" />
+        </property>
+        
+         <property name="name">
+            <column name="NAME" not-null="false" />
+        </property>
+        
+        <many-to-one name="session" class="pelarsServer.PelarsSession" 
+			not-null="false" cascade="all" not-found="ignore"></many-to-one>
+ 
+    </class>
+</hibernate-mapping>

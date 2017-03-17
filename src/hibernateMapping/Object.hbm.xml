@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+     <union-subclass name="pelarsServer.PelarsObject" extends="pelarsServer.BaseData" table="Objects">
+    
+		<property name="num">
+            <column name="NUM"  not-null="true" />
+        </property>
+ 
+        <property name="pos_x">
+            <column name="X"  not-null="true" />
+        </property>
+ 
+        <property name="pos_y">
+            <column name="Y"  not-null="true" />
+        </property>
+        
+        <property name="pos_z">
+            <column name="Z" not-null="true" />
+        </property>
+        
+    </union-subclass>
+
+</hibernate-mapping>

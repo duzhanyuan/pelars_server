@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+    <class name="pelarsServer.MultimediaContent" table="MultimediaContents">
+ 
+        <id name="id" column="ID">
+            <generator class="native" />
+        </id>
+ 
+        <property name="type">
+            <column name="TYPE"  not-null="true" />
+        </property>
+        
+        <property name="mimetype">
+            <column name="MIMETYPE"  not-null="false" />
+        </property>
+ 
+        <!--property name="data" >
+            <column name="DATA"  not-null="false" />
+        </property -->
+        
+        <property name="time">
+            <column name="TIME"  not-null="true" />
+        </property>
+        
+        <property name="view">
+            <column name="VIEW"  not-null="false" />
+        </property>
+        
+         <property name="triggering">
+            <column name="TRIGGERING"  not-null="false" />
+        </property>
+
+        <property name="creator">
+            <column name="CREATOR"  not-null="false" />
+        </property>
+        
+        <property name="thumbnail">
+            <column name="THUMBNAIL"  not-null="false" />
+        </property>
+    
+         <many-to-one name="session" class="pelarsServer.PelarsSession" 
+			not-null="true" cascade="all"></many-to-one>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+UPDATE PhaseEntities SET phase=REPLACE(phase,'obs_','');

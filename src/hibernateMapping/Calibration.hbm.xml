@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="pelarsServer.Calibration" table="CALIBRATIONS">
+      <meta attribute="class-description">
+         This class contains the calibration parameters. 
+      </meta>
+      <id name="id" column="id">
+         <generator class="native"/>
+      </id>
+      <list name="parameters" cascade="all">
+         <key column="calibration_id"/>
+         <list-index column="idx"/>
+         <element
+        column="parameters"                                
+        type="double"                         
+/>
+      </list>
+      
+      <list name="intrinsic_parameters" cascade="all">
+         <key column="calibration_id"/>
+         <list-index column="idx"/>
+         <element
+        column="parameters"                                
+        type="double"                         
+/>
+      </list>
+      <list name="distorsion_parameters" cascade="all">
+         <key column="calibration_id"/>
+         <list-index column="idx"/>
+         <element
+        column="parameters"                                
+        type="double"                         
+/>
+      </list>
+      
+      <property name="type" column="TYPE" type="string"/>
+	
+	  <many-to-one name="session" class="pelarsServer.PelarsSession" cascade="all" 
+			not-null="true"></many-to-one>
+
+   </class>
+
+</hibernate-mapping>

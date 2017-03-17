@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+    <class name="pelarsServer.Template" table="Templates">
+ 
+        <id name="id" column="ID">
+            <generator class="native" />
+        </id>
+ 
+        <property name="name">
+            <column name="NAME"  not-null="true" />
+        </property>
+ 
+        <property name="data" >
+            <column name="DATA"  not-null="true" />
+        </property>
+  
+        <property name="category">
+            <column name="CATEGORY"  not-null="true" />
+        </property>
+        
+        <property name="description">
+            <column name="DESCRIPTION"  not-null="true" />
+        </property>
+        
+        <property name="namespace">
+            <column name="NAMESPACE"  not-null="true" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

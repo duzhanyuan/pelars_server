@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+
+    <class name="pelarsServer.PelarsSession" table="Sessions">
+ 
+        <id name="id" column="ID">
+            <generator class="native" />
+        </id>
+                
+        <property name="institution_name">
+            <column name="INSTITUTION_NAME" not-null="true" />
+        </property>
+        
+        <property name="institution_address">
+           <column name="INSTITUTION_ADDRESS" not-null="true" />
+        </property>
+        
+        <property name="start">
+           <column name="START" not-null="true" />
+        </property>
+        
+        <property name="end">
+           <column name="END" not-null="false" />
+        </property>
+        
+         <property name="description">
+           <column name="DESCRIPTION" not-null="false" />
+        </property>
+        
+          <property name="score">
+           <column name="SCORE" not-null="false" />
+        </property>
+        
+         <property name="is_valid">
+           <column name="IS_VALID" not-null="true" />
+        </property>
+        
+         <many-to-one name="user" class="pelarsServer.User" 
+			not-null="true"></many-to-one>
+        
+        
+
+ 
+    </class>
+</hibernate-mapping>

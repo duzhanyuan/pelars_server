@@ -1,0 +1,85 @@
+<project name="servlet compiler" default="all" basedir=".">
+ <presetdef name="javac">
+    <javac includeantruntime="false" />
+  </presetdef>
+    <property file="build.properties" />
+    <property name="tomcat.dir" value="${tomcat_path}"/>
+    <!-- property name="tomcat.dir" value="/home/lando/tools/apache-tomcat-7.0.67"/ -->
+
+    <target name="init"
+      description="Initializes some properties.">
+        <echo message="Initializing properties."/>
+        <property name="build" value="./build" />
+        <property name="src" value="./src" /> 
+    </target>
+  
+    <!--target name="prepare" depends="init" -->
+    	<!-- exec executable="/bin/bash">
+    		<arg value="${tomcat.dir}/bin/shutdown.sh"/>
+    	</exec -->
+	<!-- exec executable="wget" outputproperty="webProcess">
+		<arg line="-http-user=percro -http-password=veryhardpassword666 http://pelars.sssup.it/manager/text/stop?path=/pelars -O -"/>
+	</exec -->
+	<!--echo message="${webProcess}"/ -->
+    	<!-- delete dir= "${tomcat.dir}/webapps/pelars"/ -->
+    	<!--delete file="${tomcat.dir}/webapps/pelars.war"/ -->
+        <!--delete dir="${build}"/>
+        <mkdir dir="${build}"/>	
+    </target-->
+ 
+    <target name="compile" depends="init" 
+      description="Compile the servlet">
+        <echo message="Compiling the Java file "/>
+        <echo message="${src} "/>
+        <javac srcdir="${src}" destdir="${build}">
+          <include name="pelarsServer/**"/>
+          <include name="hibernateMapping/**"/>
+          <include name="servlets/**"/>
+          <include name="operations/**"/>
+          <include name="authorization/**"/>
+          <include name="websockets/**"/>
+           <!-- <include name="${compiled.servlet}.java" />-->
+           <classpath>
+
+
+            <fileset dir="${tomcat.dir}/lib">
+                <include name="*.jar" />
+            </fileset>
+
+            <fileset dir="lib">
+                <include name="*.jar" />
+            </fileset>
+           </classpath>
+        </javac>
+    </target>
+	
+	 <!--target name="clean" depends="compile">
+	    	<delete dir="${build}"/>
+	 	</target -->
+	
+    <target name="deploy">
+        <war destfile="${tomcat.dir}/webapps/pelars.war" needxmlfile="true" webxml="web.xml"> <!--webxml="src/metadata/myapp.xml">-->
+           <fileset dir="Html" />
+           <fileset dir="Css" />
+           <fileset dir="Js"/>
+           <fileset dir="Jsp"/>
+           <fileset dir="Images"/>
+           <fileset dir="pelars_viz"/>
+           <fileset dir="bower_components"/>
+          <lib dir="lib" />
+          <classes dir="./build"/>
+          <classes dir="./src"/>
+       </war>
+    </target>
+    	
+    	<!-- exec executable="/bin/bash">
+    		<arg value="${tomcat.dir}/bin/startup.sh"/>
+    	</exec -->
+	<!-- exec executable="wget">
+		<arg line="-http-user=percro -http-password=veryhardpassword666 http://pelars.sssup.it/manager/text/start?path=/pelars -O -"/>
+	</exec -->
+	<target name="all" depends="compile , deploy">
+	</target>
+
+	
+</project>

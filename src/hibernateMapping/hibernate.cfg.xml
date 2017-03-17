@@ -1,0 +1,67 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+    <session-factory>
+ 
+        <!-- hibernate dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+ 		<!-- property name="hibernate.dialect">org.hibernateMapping.MySQL5Dialect</property -->
+ 
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!--property name="hibernate.connection.url">jdbc:mysql://localhost/pelars_db?autoReconnect=true</property-->
+        <property name="hibernate.connection.username">name</property>
+        <property name="hibernate.connection.password">password</property>
+        <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+ 		<property name="hibernate.connection.autocommit">false</property> 
+		<property name="hibernate.cglib.use_reflection_optimizer">true</property>
+		<property name="hibernate.show_sql">true</property>
+ 		<property name="show_sql">true</property>
+ 	
+ 		<property name="hibernate.c3p0.min_size">10</property>
+  		<property name="hibernate.c3p0.max_size">200</property>
+  		<property name="hibernate.c3p0.timeout">10</property>
+  		<!-- property name="hibernate.c3p0.max_statements">300</property -->
+  		<!-- property name="hibernate.c3p0.idle_test_period">3000</property -->
+ 		
+        <!-- Automatic schema creation (begin) === -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+ 
+ 
+        <!-- Simple memory-only cache -->
+        <!-- property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property -->
+ 
+        <!-- Enable Hibernate's automatic session context management -->
+        <!-- property name="current_session_context_class">thread</property -->
+ 
+        <!-- ############################################ -->
+        <!-- # mapping files with external dependencies # -->
+        <!-- ############################################ -->
+ 
+        <mapping resource="hibernateMapping/PelarsSession.hbm.xml" />
+        <mapping resource="hibernateMapping/User.hbm.xml" />
+        <mapping resource="hibernateMapping/Template.hbm.xml" />
+        <mapping resource="hibernateMapping/MultimediaContent.hbm.xml" />
+        <mapping resource="hibernateMapping/OpDetail.hbm.xml" />
+        <mapping resource="hibernateMapping/StreamElement.hbm.xml" />
+        <mapping resource="hibernateMapping/BaseData.hbm.xml" />
+        <mapping resource="hibernateMapping/Audio.hbm.xml" />
+        <mapping resource="hibernateMapping/Face.hbm.xml" />
+        <mapping resource="hibernateMapping/Hand.hbm.xml" />
+        <mapping resource="hibernateMapping/Ide.hbm.xml" />
+        <mapping resource="hibernateMapping/KeyLog.hbm.xml" />
+        <mapping resource="hibernateMapping/Object.hbm.xml" />
+        <mapping resource="hibernateMapping/Particle.hbm.xml" />
+        <mapping resource="hibernateMapping/PhaseEntity.hbm.xml" />
+        <mapping resource="hibernateMapping/ACL_Rule.hbm.xml" />
+        <mapping resource="hibernateMapping/ACL_RuleUser.hbm.xml" />
+        <mapping resource="hibernateMapping/Calibration.hbm.xml" />
+        <mapping resource="hibernateMapping/Button.hbm.xml" />
+        <mapping resource="hibernateMapping/Token.hbm.xml" />
+  
+       
+ 
+ 
+    </session-factory>
+</hibernate-configuration>
