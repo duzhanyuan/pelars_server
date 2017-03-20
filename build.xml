@@ -4,7 +4,6 @@
   </presetdef>
     <property file="build.properties" />
     <property name="tomcat.dir" value="${tomcat_path}"/>
-    <!-- property name="tomcat.dir" value="/home/lando/tools/apache-tomcat-7.0.67"/ -->
 
     <target name="init"
       description="Initializes some properties.">
@@ -12,20 +11,6 @@
         <property name="build" value="./build" />
         <property name="src" value="./src" /> 
     </target>
-  
-    <!--target name="prepare" depends="init" -->
-    	<!-- exec executable="/bin/bash">
-    		<arg value="${tomcat.dir}/bin/shutdown.sh"/>
-    	</exec -->
-	<!-- exec executable="wget" outputproperty="webProcess">
-		<arg line="-http-user=percro -http-password=veryhardpassword666 http://pelars.sssup.it/manager/text/stop?path=/pelars -O -"/>
-	</exec -->
-	<!--echo message="${webProcess}"/ -->
-    	<!-- delete dir= "${tomcat.dir}/webapps/pelars"/ -->
-    	<!--delete file="${tomcat.dir}/webapps/pelars.war"/ -->
-        <!--delete dir="${build}"/>
-        <mkdir dir="${build}"/>	
-    </target-->
  
     <target name="compile" depends="init" 
       description="Compile the servlet">
@@ -38,7 +23,6 @@
           <include name="operations/**"/>
           <include name="authorization/**"/>
           <include name="websockets/**"/>
-           <!-- <include name="${compiled.servlet}.java" />-->
            <classpath>
 
 
@@ -53,12 +37,9 @@
         </javac>
     </target>
 	
-	 <!--target name="clean" depends="compile">
-	    	<delete dir="${build}"/>
-	 	</target -->
 	
     <target name="deploy">
-        <war destfile="${tomcat.dir}/webapps/pelars.war" needxmlfile="true" webxml="web.xml"> <!--webxml="src/metadata/myapp.xml">-->
+        <war destfile="${tomcat.dir}/webapps/pelars.war" needxmlfile="true" webxml="web.xml"> 
            <fileset dir="Html" />
            <fileset dir="Css" />
            <fileset dir="Js"/>
@@ -72,12 +53,6 @@
        </war>
     </target>
     	
-    	<!-- exec executable="/bin/bash">
-    		<arg value="${tomcat.dir}/bin/startup.sh"/>
-    	</exec -->
-	<!-- exec executable="wget">
-		<arg line="-http-user=percro -http-password=veryhardpassword666 http://pelars.sssup.it/manager/text/start?path=/pelars -O -"/>
-	</exec -->
 	<target name="all" depends="compile , deploy">
 	</target>
 
