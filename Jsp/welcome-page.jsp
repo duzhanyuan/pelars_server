@@ -90,7 +90,6 @@ var user_id = <%=s_id%>;
 	
 	function personalChange(){
 		window.open("change-personal.html");
-		//window.location.href = "http://pelars.sssup.it/pelars/change-personal.html;
 		return false;
 	}
 	

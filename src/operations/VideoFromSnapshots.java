@@ -71,7 +71,6 @@ public class VideoFromSnapshots extends Operation{
 
 		//put the URL of the video as response of the operation
 		p.result = "http://pelars.sssup.it/pelars/multimedia/" + cur_session + "/" + video.getId();// + "  " + this.message;
-		//p.result = res + "\n" + "http://pelars.sssup.it/pelars/multimedia/" + cur_session + "/" + video.getId();
 		Util.update(my_session,p); 
 	}
 
