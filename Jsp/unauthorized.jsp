@@ -23,8 +23,8 @@ if(cookies != null){
 		}
 	}
 }
-
-String content = "2.4;url=http://pelars.sssup.it/pelars/index.jsp?p-url=" + url;
+String cont = request.getContextPath();
+String content = "2.4;url=" + cont + "?p-url=" + url;
 
 response.setStatus(401);
 %>

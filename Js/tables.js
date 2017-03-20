@@ -2,7 +2,7 @@
 function getTable(m_url, selector, single){
 	//set cookie with URL here
 	$.getScript("cookie-handler.js", function(){
-		saveCookie("p-url", "http://pelars.sssup.it/pelars/view.html#" + m_url);
+		saveCookie("p-url", "${pageContext.request.contextPath}/view.html#" + m_url);
 	});
 
 	var n = m_url.indexOf("?");

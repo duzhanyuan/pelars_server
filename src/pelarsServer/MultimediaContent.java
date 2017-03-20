@@ -144,7 +144,7 @@ public class MultimediaContent extends Data{
 			jo.put("creator", creator);
 			jo.put("session", this.getSession().getId());
 			jo.put("size", this.getSize());
-			jo.put("data", "http://pelars.sssup.it/pelars/multimedia/" + session.getId() + "/"+id);			
+			jo.put("data", System.getProperty("host.url") +"/multimedia/" + session.getId() + "/"+id);			
 		}catch (JSONException e){
 			e.printStackTrace();
 		}
@@ -171,7 +171,7 @@ public class MultimediaContent extends Data{
 				jo.put("trigger", triggering);
 				jo.put("creator", creator);
 				//			jo.put("phase", phase);
-				jo.put("data", "<a href=\"multimedia/" + session.getId() + "/"+ id + "\"  target=\"_blank\"> http://pelars.sssup.it/pelars/multimedia/" + session.getId() + "/"+ id + "</a>");			
+				jo.put("data", "<a href=\"multimedia/" + session.getId() + "/"+ id + "\"  target=\"_blank\"> " + System.getProperty("host.url") + "/multimedia" + session.getId() + "/"+ id + "</a>");			
 			}catch (JSONException e){
 				e.printStackTrace();
 			}

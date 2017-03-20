@@ -45,7 +45,7 @@
            <fileset dir="Js"/>
            <fileset dir="Jsp"/>
            <fileset dir="Images"/>
-           <fileset dir="pelars_viz"/>
+           <!--fileset dir="pelars_viz"/ -->
            <fileset dir="bower_components"/>
           <lib dir="lib" />
           <classes dir="./build"/>

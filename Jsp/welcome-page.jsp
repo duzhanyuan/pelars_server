@@ -89,7 +89,7 @@ var user_id = <%=s_id%>;
 });
 	
 	function personalChange(){
-		window.open("change-personal.html");
+		window.open("change-personal.jsp");
 		return false;
 	}
 	

@@ -11,7 +11,7 @@ function pelars_authenticate_prompt(){
 			withCredentials : true
 		},
 		type : "POST",
-		url : "https://pelars.sssup.it:8443/pelars/password?user=" + email + "&pwd=" + pswd,
+		url : "${pageContext.request.contextPath}/password?user=" + email + "&pwd=" + pswd,
 		async: false,
 		success : function(jqXHR, status, result){
 		jsres = JSON.parse(jqXHR);
@@ -35,7 +35,7 @@ function pelars_authenticate(email, pswd){
 		},
 		crossDomain : true,
 		type : "POST",
-		url : "https://pelars.sssup.it:8443/pelars/password?user=" + email + "&pwd=" + pswd,
+		url : "${pageContext.request.contextPath}/password?user=" + email + "&pwd=" + pswd,
 		async: false,
 		success : function(jqXHR, status, result){
 		jsres = JSON.parse(jqXHR);

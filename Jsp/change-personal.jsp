@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +14,8 @@
 
 <script type="text/javascript">
 	function postPersonal(form) {
-		var myurl = "http://pelars.sssup.it/pelars/user/"
-				.concat(opener.user_id);
+		var myurl = "${pageContext.request.contextPath}/user/".concat(opener.user_id);
+		console.log(myurl);
 		var sub_data = {};
 		if (form.name.value != "") {
 			sub_data.new_name = form.name.value;

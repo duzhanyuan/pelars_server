@@ -9,7 +9,8 @@
 <title>Unauthorized Access</title>
 <% 
 String url = request.getParameter("p-url");
-String content = "2.4;url=http://pelars.sssup.it/pelars?p-url="+url;
+String cont = request.getContextPath();
+String content = "2.4;url=" + cont + "?p-url=" + url;
 
 response.setStatus(200);
 %>

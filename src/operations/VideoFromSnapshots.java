@@ -70,7 +70,7 @@ public class VideoFromSnapshots extends Operation{
 		OpDetail p = Util.doQueryUnique(my_session, "SELECT U FROM OpDetail AS U WHERE U.id = :id", "id", id); 
 
 		//put the URL of the video as response of the operation
-		p.result = "http://pelars.sssup.it/pelars/multimedia/" + cur_session + "/" + video.getId();// + "  " + this.message;
+		p.result = System.getProperty("host.url") + "/multimedia/" + cur_session + "/" + video.getId();// + "  " + this.message;
 		Util.update(my_session,p); 
 	}
 

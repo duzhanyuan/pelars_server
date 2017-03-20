@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <meta charset="US-ASCII">
 <title>Logout </title>
-<meta http-equiv="refresh" content="2;url=http://pelars.sssup.it/pelars" />
+<meta http-equiv="refresh" content="2;url=${pageContext.request.contextPath}" />
 </head>
 <body>
 <div class="container">

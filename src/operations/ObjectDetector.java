@@ -185,7 +185,7 @@ public class ObjectDetector extends Operation{
 		JSONArray jsa = new JSONArray(jsonoutput);
 
 		JSONObject jobj = new JSONObject();
-		jobj.put("url", "http://pelars.sssup.it/pelars/multimedia/" + this.cur_session + "/" + nvideo.getId());
+		jobj.put("url", System.getProperty("host.url") + "/multimedia/" + this.cur_session + "/" + nvideo.getId());
 		jobj.put("boxes", jsa);
 		jsonoutput = jobj.toString(4);
 
